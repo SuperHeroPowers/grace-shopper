@@ -13,8 +13,14 @@ const Product = db.define('product',{
 	description: {
 		type: Sequelize.TEXT
 	},
+	imagePath:{
+		type: Sequelize.STRING
+	},
 	category: {
 		type: Sequelize.ARRAY(Sequelize.STRING)
+	},
+	inventory: {
+		type: Sequelize.INTEGER
 	}
 });
 
