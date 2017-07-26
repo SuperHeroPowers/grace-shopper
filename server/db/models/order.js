@@ -7,10 +7,13 @@ const Order = db.define('order', {
     values: ['cart', 'pending', 'completed'],
     defaultValue: 'cart'
   },
-  name: {
+  shippingName: {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  billingName: {
+
+  }
   shipping : {
     type: Sequelize.STRING,
     allowNull: false,
