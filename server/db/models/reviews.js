@@ -7,7 +7,7 @@ const Reviews = db.define('reviews', {
         type:Sequelize.INTEGER,
         allowNull: false
     },
-    desc: {
+    review: {
         type: Sequelize.TEXT
     }
 })
