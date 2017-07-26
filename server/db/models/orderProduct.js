@@ -16,7 +16,6 @@ const OrderProduct = db.define('orderProduct',{
 			return this.quantity * this.price;
 		}
 	}
-}
 
 });
 module.exports = OrderProduct;

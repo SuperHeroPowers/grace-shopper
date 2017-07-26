@@ -1,5 +1,5 @@
 const User = require('./user');
-const Reviews = require('./reviews');
+const Review = require('./review');
 const Product = require('./product');
 const Category = require('./category');
 const Order = require('./order');
@@ -18,11 +18,23 @@ const OrderProduct = require('./orderProduct');
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
  */
+
+User.hasMany(Order);
+Order.belongsTo(User);
+User.hasMany(Review);
+Review.belongsTo(User);
+Product.hasMany(Review);
+Review.belongsTo(Product);
+Product.belongsToMany(Order, {through: OrderProduct, foreignKey: 'productId'});
+Order.belongsToMany(Product, {through: OrderProduct, foreignKey: 'orderId'});
+Product.belongsToMany(Category, {through: 'ProductCategory', foreignKey: 'productId'});
+Category.belongsToMany(Product, {through: 'ProductCategory', foreignKey: 'categoryId'});
+
 module.exports = {
   User,
   OrderProduct,
   Order,
   Product,
   Category,
-  Reviews
+  Review
 }
