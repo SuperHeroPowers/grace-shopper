@@ -9,9 +9,14 @@ const OrderProduct = db.define('orderProduct',{
 		}
 	},
 	//here price is the price when the order was placed.
-	price: Sequelize.INTEGER,
-	totalPrice: Sequelize.INTEGER
-
+	price: Sequelize.FLOAT
+},{
+	getterMethods:{
+		totalProductPrice: function(){
+			return this.quantity * this.price;
+		}
+	}
+}
 
 });
 module.exports = OrderProduct;
