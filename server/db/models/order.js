@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
-const db = require('../db')
+const db = require('../db');
+const {OrderProduct} = ('../db/models');
 
 //foreign id: userId
 const Order = db.define('order', {
@@ -8,11 +9,19 @@ const Order = db.define('order', {
     values: ['created', 'processing', 'shipped', 'cancelled', 'delivered'],
     defaultValue: 'created'
   },
-  nameShipping: {
+  firstNameShipping: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  nameBilling: {
+  lastNameShipping: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  firstNameBilling: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  lastNameBilling: {
     type: Sequelize.STRING,
     allowNull: false,
   },
@@ -28,9 +37,14 @@ const Order = db.define('order', {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
+  ccExpiration: {
+    type: Sequelize.INTEGER,
+  },
+  ccSecurity: {
+    type: Sequelize.INTEGER,
+  },
   dateProcessed: {
     type: Sequelize.DATE,
-    allowNull: false,
   },
   dateShipped: {
     type: Sequelize.DATE,
@@ -38,6 +52,10 @@ const Order = db.define('order', {
   dateDelivered: {
     type: Sequelize.DATE,
   },
+  totalPrice: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  }
 });
 
 
@@ -53,3 +71,17 @@ module.exports = Order;
 //     type: Sequelize.FLOAT,
 //     allowNull: false,
 //   },
+// {
+//   instanceMethods: {
+//     getTotal: function(){
+//       return Order.findAll({
+//         include: [{
+//           model: OrderProduct,
+//           where: {
+//             id: this.id
+//           }
+//         }
+//         ]
+//       })
+//     }
+//   }
