@@ -1,42 +1,55 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
+//foreign id: userId
 const Order = db.define('order', {
   status: {
     type: Sequelize.ENUM,
-    values: ['cart', 'pending', 'completed'],
-    defaultValue: 'cart'
+    values: ['created', 'processing', 'shipped', 'cancelled', 'delivered'],
+    defaultValue: 'created'
   },
-  shippingName: {
+  nameShipping: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  billingName: {
-
-  }
-  shipping : {
+  nameBilling: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  billing: {
+  shippingAddress : {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  cardNumber: {
+  billingAddress: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  ccNumber: {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-  total: {
-    type: Sequelize.FLOAT,
-    allowNull: false,
-  },
-  datePlaced: {
-    type: Sequelize.STRING,
+  dateProcessed: {
+    type: Sequelize.DATE,
     allowNull: false,
   },
   dateShipped: {
-    type: Sequelize.STRING,
-  }
+    type: Sequelize.DATE,
+  },
+  dateDelivered: {
+    type: Sequelize.DATE,
+  },
 });
 
+
 module.exports = Order;
+
+// ccExpiration: {
+//     type: Sequelize.INTEGER,
+//   },
+//   ccSecurity: {
+//     type: Sequelize.INTEGER,
+//   },
+// total: {
+//     type: Sequelize.FLOAT,
+//     allowNull: false,
+//   },
