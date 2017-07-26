@@ -1,15 +1,16 @@
 const router = require('express').Router();
-const {User, OrderDetail, Product} = require('../db/models');
+const {User, Order} = require('../db/models');
 module.exports = router;
 
-//get all orders
+//get metadata for all orders from a specific user, not including products
+//specific orders should go in OrderProduct route
 router.get('/:userId', (req, res, next) => {
-  User.findAll({
-    // explicitly select only the id and email fields - even though
-    // users' passwords are encrypted, it won't help if we just
-    // send everything to anyone who asks!
-
+  Order.findAll({
+    where: {
+      userId: req.params.userId
+    }
   })
-    .then()
-    .catch(next)
-})
+  .then(orders => res.json(orders))
+  .catch(next);
+});
+
