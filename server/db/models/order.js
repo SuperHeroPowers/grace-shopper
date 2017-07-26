@@ -3,9 +3,9 @@ const db = require('../db')
 
 const Order = db.define('order', {
   status: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    defaultValue: pending
+    type:   Sequelize.ENUM,
+    values: ['cart', 'pending', 'completed'],
+    defaultValue: cart
   },
   name: {
     type: Sequelize.STRING,
