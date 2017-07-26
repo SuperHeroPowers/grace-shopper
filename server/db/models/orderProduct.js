@@ -7,6 +7,8 @@ const OrderProduct = db.define('orderProduct',{
 		where:{
 			$ne: 0
 		}
-	}
+	},
+	priceCurrent: Sequelize.INTEGER,
+	totalPrice: Sequelize.INTEGER
 });
 module.exports = OrderProduct;
