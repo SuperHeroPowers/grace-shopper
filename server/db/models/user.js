@@ -3,12 +3,32 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const User = db.define('user', {
+  firstName: {
+    type:Sequelize.STRING,
+    allowNull: false
+  }, 
+  lastName: {
+    type:Sequelize.STRING,
+    allowNull: false
+  },
   email: {
     type: Sequelize.STRING,
     unique: true,
+    allowNull: false,
+    isEmail: true
+  },
+  // min length 
+  // strengthening password with special characters
+  password: {
+    type: Sequelize.STRING,
     allowNull: false
   },
-  password: {
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
+  // profile image default val is placeholder image DOWNLOAD ONE!!!!!
+  profileImgPath: {
     type: Sequelize.STRING
   },
   salt: {
