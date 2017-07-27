@@ -63,4 +63,24 @@ router.post('/:userId/review', (req, res, next) => {
     res.sendStatus(201).json(newReview)
   })
   .catch(next);
+});
+
+
+// Admin Use
+// POST new user
+router.post('/', (req, res, next)=>{
+  return User.create(req.body)
+  .then(user => res.status(201).json(user));
+});
+
+// Admin Use
+// DELETE user
+router.delete('/:userId', (req, res, next)=>{
+  return User.destroy({
+    where: {
+      id: res.params.userId
+    }
+  })
+  .then(()=> res.sendStatus(204))
+  .catch(next);
 })
