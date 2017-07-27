@@ -4,7 +4,7 @@ const db = require('../db')
 // const User = require('./user');
 // const Product = require('./product');
 
-const Reviews = db.define('reviews', {
+const Reviews = db.define('review', {
     rating: {
         type:Sequelize.ENUM,
         values: ['1', '2', '3', '4', '5'],
@@ -34,4 +34,4 @@ const Reviews = db.define('reviews', {
 }
 );
 
-module.exports = Reviews
+module.exports = Reviews;
