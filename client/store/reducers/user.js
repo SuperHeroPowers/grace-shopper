@@ -1,3 +1,4 @@
+//this reducer is used for a single user
 import axios from 'axios'
 import history from '../history'
 
@@ -6,7 +7,6 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
-const CREATE_USER = 'CREATE_USER'
 
 /**
  * INITIAL STATE
@@ -18,7 +18,6 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
-const createUser = user => ({type: CREATE_USER, user})
 
 /**
  * THUNK CREATORS

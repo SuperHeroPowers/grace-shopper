@@ -22,42 +22,42 @@ const getProducts = products => ({type: GET_PRODUCTS, products});
 const getProduct = product => ({type: GET_PRODUCT, product});
 const createProduct = product => ({type: CREATE_PRODUCT, product});
 const removeProduct = product => ({type: REMOVE_PRODUCT, product});
-const updateProduct = product => ({type: UPDATE_PRODUCT, product})
+const updateProduct = product => ({type: UPDATE_PRODUCT, product});
 
 /**
  * THUNK CREATORS
  */
 export const fetchProducts = () =>
   dispatch =>
-    axios.get('/products')
+    axios.get('/api/products')
       .then(res =>
         dispatch(getProducts(res.data)))
       .catch(err => console.log(err));
 
 export const fetchSingleProduct = () =>
   dispatch =>
-    axios.get('/products/:productId')
+    axios.get('/api/products/:productId')
       .then(res =>
         dispatch(getProduct(res.data)))
       .catch(err => console.log(err));
 
 export const postProduct = () =>
   dispatch =>
-    axios.post('/products')
+    axios.post('/api/products')
       .then(res =>
         dispatch(createProduct(res.data)))
       .catch(err => console.log(err));
 
 export const deleteProduct = () =>
   dispatch =>
-    axios.delete('/products/:productId')
+    axios.delete('/api/products/:productId')
       .then(res =>
         dispatch(removeProduct(res.data)))
       .catch(err => console.log(err));
 
 export const putProduct = () =>
   dispatch =>
-    axios.put('/products/:productId')
+    axios.put('/api/products/:productId')
       .then(res =>
         dispatch(updateProduct(res.data)))
       .catch(err => console.log(err));
