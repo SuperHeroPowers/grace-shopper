@@ -17,14 +17,13 @@ router.get('/', (req, res, next) => {
         .catch(next)
 })
 
-
 // GET review by ID
 api.get('/:reviewId', (req, res, next) => {
     var reviewId=req.params.reviewId;
 
     if(!Number(reviewId)){res.sendStatus(500);}
     else{
-        Reviews.findAll({where:{id:reviewId}, include: [ Products,Users ]})
+        Reviews.findAll({where:{id:reviewId}, include: [ Products, Users ]})
             .then(function (data) {
                 if(data){res.json(data)}
                 else{
@@ -34,7 +33,6 @@ api.get('/:reviewId', (req, res, next) => {
     }
 
 });
-
 
 // GET all reviews for each Product
 api.get('/:productId', (req, res, next) => {
