@@ -5,7 +5,6 @@ module.exports = router
 // reviews by product
 // reviews by user
 
-
 // GET all Reviews
 router.get('/', (req, res, next) => {
     Reviews.findAll({
@@ -71,7 +70,7 @@ api.get('/:userId', (req, res, next) => {
 
 });
 
-// ADD STUDENT
+// ADD Review
 api.post('/new', (req, res, next) => {
     var studentFirst=req.body.firstName;
     var studentLast=req.body.lastName;
@@ -95,14 +94,13 @@ api.post('/new', (req, res, next) => {
 
 });
 
-// EDIT STUDENT
+// EDIT Review
 api.put('/edit/:reviewId', (req, res, next) => {
-    var studentId=req.params.studentId;
-    var studentFirst=req.body.firstName;
-    var studentLast=req.body.lastName;
-    var studentEmail=req.body.email;
-    var studentImage=req.body.image;
-    var studentCampus=Number(req.body.campusId);
+    var reviewId=req.params.reviewId;
+    var reviewUserId=req.body.userId;
+    var reviewProductId=req.body.productId;
+    var reviewDescription=req.body.description;
+    var reviewRating=Number(req.body.campusId);
 
     if(!Number(studentId)){res.sendStatus(500);}
     else{
@@ -127,7 +125,7 @@ api.put('/edit/:reviewId', (req, res, next) => {
     }
 });
 
-// DELETE STUDENT
+// DELETE Review
 api.delete('/:reviewId', (req, res, next) => {
     var reviewId=req.params.reviewId;
 
@@ -147,21 +145,4 @@ api.delete('/:reviewId', (req, res, next) => {
                 }
             });
     }
-
-    // Students.destroy({
-    //     where: {
-    //         id: e.target.id
-    //     }
-    // })
-    // .then(function (data) {
-    //     console.log("data",data);
-    //     if(data===0){res.sendStatus(404);}
-    //     else{
-    //         res.status(204);
-    //         res.send('done');
-    //     }
-    //
-    // })
-    // .catch(next);
-
 });
