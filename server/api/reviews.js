@@ -1,6 +1,8 @@
-const router = require('express').Router()
-const {Reviews} = require('../db/models')
-module.exports = router
+const router = require('express').Router();
+const {Reviews} = require('../db/models');
+const {Product} = require('../db/models');
+const {User} = require('../db/models');
+module.exports = router;
 
 // reviews by product
 // reviews by user
@@ -23,7 +25,7 @@ api.get('/:reviewId', (req, res, next) => {
 
     if(!Number(reviewId)){res.sendStatus(500);}
     else{
-        Reviews.findAll({where:{id:reviewId}, include: [ Products, Users ]})
+        Reviews.findAll({where:{id:reviewId}, include: [ Product, User ]})
             .then(function (data) {
                 if(data){res.json(data)}
                 else{
@@ -40,7 +42,7 @@ api.get('/:productId', (req, res, next) => {
 
     if(!Number(productId)){res.sendStatus(500);}
     else{
-        Reviews.findAll({where:{id:productId}, include: [ Products, Users ]})
+        Reviews.findAll({where:{id:productId}, include: [ Product, User ]})
             .then(function (data) {
                 if(data){res.json(data)}
                 else{
@@ -57,7 +59,7 @@ api.get('/:userId', (req, res, next) => {
 
     if(!Number(userId)){res.sendStatus(500);}
     else{
-        Reviews.findAll({where:{id:userId}, include: [ Users ]})
+        Reviews.findAll({where:{id:userId}, include: [ User ]})
             .then(function (data) {
                 if(data){res.json(data)}
                 else{
@@ -70,19 +72,19 @@ api.get('/:userId', (req, res, next) => {
 
 // ADD Review
 api.post('/new', (req, res, next) => {
-    var studentFirst=req.body.firstName;
-    var studentLast=req.body.lastName;
-    var studentEmail=req.body.email;
-    var studentImage=req.body.image;
-    var studentCampus=Number(req.body.campusId);
+    var reviewId=req.params.reviewId;
+    var reviewUserId=req.body.userId;
+    var reviewProductId=req.body.productId;
+    var reviewDescription=req.body.description;
+    var reviewRating=Number(req.body.campusId);
     console.log("TEST", req.body);
 
     Reviews.create({
-        firstName: studentFirst,
-        lastName: studentLast,
-        email: studentEmail,
-        image: studentImage,
-        campusId: studentCampus
+        reviewId: reviewId,
+        reviewUserId: reviewUserId,
+        reviewProductId: reviewProductId,
+        reviewDescription: reviewDescription,
+        reviewRating: reviewRating
     })
         .then(function (data) {
             console.log("DATA",data);
@@ -100,17 +102,17 @@ api.put('/edit/:reviewId', (req, res, next) => {
     var reviewDescription=req.body.description;
     var reviewRating=Number(req.body.campusId);
 
-    if(!Number(studentId)){res.sendStatus(500);}
+    if(!Number(reviewId)){res.sendStatus(500);}
     else{
-        Students.findById(studentId)
+        Reviews.findById(reviewId)
             .then(function (data) {
                 if(data){
                     data.update({
-                        firstName: studentFirst,
-                        lastName: studentLast,
-                        email: studentEmail,
-                        image: studentImage,
-                        campusId: studentCampus
+                        reviewId: reviewId,
+                        reviewUserId: reviewUserId,
+                        reviewProductId: reviewProductId,
+                        reviewDescription: reviewDescription,
+                        reviewRating: reviewRating
                     })
                         .then(function() {
                             res.send(data);
@@ -129,7 +131,7 @@ api.delete('/:reviewId', (req, res, next) => {
 
     if(!Number(reviewId)){res.sendStatus(500)}
     else {
-        Students.findById(reviewId)
+        Reviews.findById(reviewId)
             .then(function (data) {
                 if (data) {
                     res.status(204);
