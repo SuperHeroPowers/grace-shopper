@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Order, OrderProduct, Product} = require('../db/models')
+const {User, Order, OrderProduct, Product, Review} = require('../db/models')
 module.exports = router
 
 //admin only
@@ -32,3 +32,35 @@ router.get('/:userId/orders', (req, res, next) => {
   .then(orders => res.json(orders))
   .catch(next);
 });
+
+//get all reviews by a user
+router.get('/:userId/reviews', (req, res, next) => {
+  const userIdNum = req.params.userId;
+  if(!Number(userId)){res.sendStatus(500);}
+  else{
+    Reviews.findAll({
+      where: {
+        userId: userIdNum
+      },
+      include: {
+        model: User
+      }
+    })
+    .then(function (userReviews) {
+      if(userReviews){res.json(userReviews)}
+      else{
+        res.sendStatus(404);
+      }
+    })
+    .catch(next);
+  }
+});
+
+//add a review from user
+router.post('/:userId/review', (req, res, next) => {
+  return Review.create (req.body)
+  .then(newReview => {
+    res.sendStatus(201).json(newReview)
+  })
+  .catch(next);
+})
