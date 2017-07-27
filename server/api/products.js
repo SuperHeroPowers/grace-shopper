@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const {Product} = require('../db/models');
-module.exports = router;
 
 router.get('/', (req, res, next)=>{
 	Product.findAll()
@@ -12,6 +11,12 @@ router.get('/:productId', (req, res, next)=>{
 	Product.findById(req.params.productId)
 	.then(product => res.json(product))
 	.catch(next);
+});
+
+// product.category returns a sequelize array
+router.get('/:productId/categories', (req, res, next)=>{
+	Product.findById(req.params.productId)
+	.then(product => res.send(product.category));
 });
 
 router.post('/', (req, res, next)=>{
@@ -35,3 +40,5 @@ router.delete('/:productId', (req, res, next)=> {
 	.then(()=>res.sendStatus(204))
 	.catch(next);
 });
+
+module.exports = router;

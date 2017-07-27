@@ -2,13 +2,19 @@ const router = require('express').Router()
 const {Category} = require('../db/models')
 
 router.get('/', (req, res, next) => {
-  Category.findAll()
-    .then(categories => res.json(categories))
-    .catch(next);
+	Category.findAll()
+	.then(categories => res.json(categories))
+	.catch(next);
 });
 
-router.get('/:categoryId/products', (req, res, next)=>{
-
+// Returns all products of a specified category
+router.get('/:categoryId', (req, res, next)=>{
+	Category.findById(req.params.categoryId)
+	.then(category => {
+		return category.getProducts()
+	})
+	.then(products => res.json(products))
+	.catch(next);
 });
 
 router.post('/', (req, res, next)=>{
