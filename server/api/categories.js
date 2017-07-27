@@ -1,13 +1,14 @@
 const router = require('express').Router()
 const {Category} = require('../db/models')
 
+// GET all categories
 router.get('/', (req, res, next) => {
 	Category.findAll()
 	.then(categories => res.json(categories))
 	.catch(next);
 });
 
-// Returns all products of a specified category
+// GET all products of specific category
 router.get('/:categoryId', (req, res, next)=>{
 	Category.findById(req.params.categoryId)
 	.then(category => {
@@ -17,12 +18,16 @@ router.get('/:categoryId', (req, res, next)=>{
 	.catch(next);
 });
 
+// Admin use
+// POST new category
 router.post('/', (req, res, next)=>{
 	Category.create(req.body)
 	.then(category => res.status(201).json(category))
 	.catch(next);
 });
 
+// Admin use
+// DELETE category
 router.delete('/:categoryId', (req, res, next)=> {
 	Category.destory({
 		where : {
