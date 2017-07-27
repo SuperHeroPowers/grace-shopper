@@ -32,6 +32,6 @@ const Reviews = db.define('reviews', {
     //     include: [Product,User]
     // }
 }
-)
+);
 
 module.exports = Reviews

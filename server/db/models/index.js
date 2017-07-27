@@ -15,5 +15,6 @@ const Reviews = require('./reviews')
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User
+  User,
+  Reviews
 }

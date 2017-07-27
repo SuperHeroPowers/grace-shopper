@@ -13,14 +13,14 @@ router.get('/', (req, res, next) => {
         // explicitly select only the id and email fields - even though
         // users' passwords are encrypted, it won't help if we just
         // send everything to anyone who asks!
-        attributes: ['review', 'rating']
+        attributes: ['rating', 'description']
     })
         .then(users => res.json(users))
         .catch(next)
 })
 
 // GET review by ID
-api.get('/:reviewId', (req, res, next) => {
+router.get('/:reviewId', (req, res, next) => {
     var reviewId=req.params.reviewId;
 
     if(!Number(reviewId)){res.sendStatus(500);}
@@ -37,7 +37,7 @@ api.get('/:reviewId', (req, res, next) => {
 });
 
 // GET all reviews for each Product
-api.get('/:productId', (req, res, next) => {
+router.get('/product/:productId', (req, res, next) => {
     var productId=req.params.productId;
 
     if(!Number(productId)){res.sendStatus(500);}
@@ -54,7 +54,7 @@ api.get('/:productId', (req, res, next) => {
 });
 
 // GET all reviews for each User
-api.get('/:userId', (req, res, next) => {
+router.get('/user/:userId', (req, res, next) => {
     var userId=req.params.userId;
 
     if(!Number(userId)){res.sendStatus(500);}
@@ -71,7 +71,7 @@ api.get('/:userId', (req, res, next) => {
 });
 
 // ADD Review
-api.post('/new', (req, res, next) => {
+router.post('/new', (req, res, next) => {
     var reviewId=req.params.reviewId;
     var reviewUserId=req.body.userId;
     var reviewProductId=req.body.productId;
@@ -95,7 +95,7 @@ api.post('/new', (req, res, next) => {
 });
 
 // EDIT Review
-api.put('/edit/:reviewId', (req, res, next) => {
+router.put('/edit/:reviewId', (req, res, next) => {
     var reviewId=req.params.reviewId;
     var reviewUserId=req.body.userId;
     var reviewProductId=req.body.productId;
@@ -126,7 +126,7 @@ api.put('/edit/:reviewId', (req, res, next) => {
 });
 
 // DELETE Review
-api.delete('/:reviewId', (req, res, next) => {
+router.delete('/:reviewId', (req, res, next) => {
     var reviewId=req.params.reviewId;
 
     if(!Number(reviewId)){res.sendStatus(500)}
