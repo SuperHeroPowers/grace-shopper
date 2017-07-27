@@ -9,6 +9,7 @@ router.get('/', (req, res, next) => {
 });
 
 // GET all products of specific category
+// returns array
 router.get('/:categoryId', (req, res, next)=>{
 	Category.findById(req.params.categoryId)
 	.then(category => {

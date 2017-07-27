@@ -81,11 +81,11 @@ describe('Product routes', () => {
       .then(res=>{
         expect(res.body.length).to.equal(1)
       })
-    })
+    });
 
 
 
 
-  }) // end describe('/api/users')
+  }) // end describe('/api/products')
 
-}) // end describe('User routes')
+}) // end describe('Product routes')
