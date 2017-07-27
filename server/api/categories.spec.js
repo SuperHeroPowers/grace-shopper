@@ -16,7 +16,7 @@ describe('Category routes', () => {
 
     beforeEach(() => {
         return Category.create({
-          category: name1
+          name: name1
         })
     })
 
@@ -26,7 +26,7 @@ describe('Category routes', () => {
       .expect(200)
       .then(res => {
         expect(res.body).to.be.an('array');
-        expect(res.body[0].category).to.be.equal('purple');
+        expect(res.body[0].name).to.be.equal('purple');
       })
     });
 
@@ -41,19 +41,12 @@ describe('Category routes', () => {
     it ('POST /', ()=>{
       return request(app)
       .post('/api/categories')
-      .send({category: 'blue'})
+      .send({name: 'blue'})
       .expect(201)
       .then(res=>{
         expect(res.body).to.be.an('object')
-        expect(res.body.category).to.be.equal('blue')
+        expect(res.body.name).to.be.equal('blue')
       })
-    })
-
-    it ('does not POST invalid', ()=>{
-      return request(app)
-      .post('/api/products')
-      .send({})
-      .expect(500);
     });
   });
 
