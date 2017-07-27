@@ -22,10 +22,6 @@ const Product = db.define('product',{
 	inventory: {
 		type: Sequelize.INTEGER
 	}
-},{
-	getterMethods: {
-		floatPrice: function() { return this.price / 100} 
-	}
 });
 
 module.exports = Product;
