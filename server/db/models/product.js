@@ -24,7 +24,7 @@ const Product = db.define('product',{
 	}
 },{
 	getterMethods: {
-		floatPrice: function() { return this.price / 100} 
+		floatPrice: function() { return this.price / 100.0} 
 	}
 });
 
