@@ -2,14 +2,14 @@ const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Review = db.define('review', {
+const Reviews = db.define('review', {
     rating: {
         type:Sequelize.INTEGER,
         allowNull: false
     },
-    review: {
+    reviews: {
         type: Sequelize.TEXT
     }
 })
 
-module.exports = Review;
+module.exports = Reviews;
