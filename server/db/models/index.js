@@ -5,6 +5,7 @@ const Category = require('./category');
 const Order = require('./order');
 const OrderProduct = require('./orderProduct');
 
+
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
@@ -37,4 +38,4 @@ module.exports = {
   Product,
   Category,
   Reviews
-}
+};

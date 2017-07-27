@@ -29,7 +29,8 @@ const User = db.define('user', {
   },
   // profile image default val is placeholder image DOWNLOAD ONE!!!!!
   profileImgPath: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    defaultValue: 'https://unsplash.it/g/252/200/?random'
   },
   salt: {
     type: Sequelize.STRING
