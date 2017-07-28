@@ -55,19 +55,11 @@ export const putProduct = (id, product) =>
         dispatch(updateProduct(res.data)))
       .catch(err => console.log(err));
 
-<<<<<<< HEAD
-export const deleteProduct = (id) =>
-  dispatch =>
-    dispatch(removeProduct(id));
-    //axios.delete(`/api/products/${id}`)
-      //.catch(err => console.log(err));
-=======
 // export const deleteProduct = (id) =>
 //   dispatch =>
 //     dispatch(removeProduct(id));
 //     axios.delete(`/api/products/${id}`)
 //       .catch(err => console.log(err));
->>>>>>> fbae9e6d52f7730e3abb815c59a291ca3fd1ce77
 /**
  * REDUCER
  */
