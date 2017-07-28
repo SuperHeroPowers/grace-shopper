@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
 import Navbar from './Navbar'
+import Products from './Products'
 
 /**
  * COMPONENT
@@ -17,8 +18,8 @@ const Main = (props) => {
 
   return (
     <div>
-      <Navbar isLoggedin = {false} handleClick={handleClick}/>
-      {children}
+      <Navbar isLoggedIn = {isLoggedIn} handleClick={handleClick}/>
+      <Products />
     </div>
   )
 }

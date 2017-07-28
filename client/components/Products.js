@@ -3,9 +3,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
 
-function All (props){
+function Products (props){
   //can take in all products or products in a category
   const elements = props.products;
+  console.log('rendering products')
 
   return (
     <div className="container">
@@ -31,4 +32,4 @@ const mapStateToProps = function (state, ownProps) {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(All));
+export default withRouter(connect(mapStateToProps)(Products));
