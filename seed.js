@@ -108,7 +108,8 @@ const defaultOrderProducts=[
     {orderId:2,productId:2,quantity:1,price:100},
     {orderId:3,productId:3,quantity:1,price:100},
     {orderId:4,productId:4,quantity:1,price:100},
-    {orderId:5,productId:1,quantity:1,price:100}
+    {orderId:5,productId:1,quantity:1,price:100},
+    {orderId:5,productId:5,quantity:1,price:100}
 ];
 
 
