@@ -58,8 +58,8 @@ export const putProduct = (id, product) =>
 export const deleteProduct = (id) =>
   dispatch =>
     dispatch(removeProduct(id));
-    axios.delete(`/api/products/${id}`)
-      .catch(err => console.log(err));
+    //axios.delete(`/api/products/${id}`)
+      //.catch(err => console.log(err));
 /**
  * REDUCER
  */
