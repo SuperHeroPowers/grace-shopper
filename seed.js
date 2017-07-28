@@ -1,12 +1,13 @@
 'use strict';
 
 const db = require('./server/db');
-const models=require('./server/db/models');
+// const models=require('./server/db/models');
+
 const Category=db.models.category;
 const Order=db.models.order;
-const OrderProduct=db.models.orderProduct;
+const OrderProduct=require('./server/db/models/orderProduct');
 const Product=db.models.product;
-const Reviews=db.models.reviews;
+const Review=db.models.review;
 const User=db.models.user;
 const Bluebird = require('bluebird');
 
@@ -29,19 +30,11 @@ const defaultUsers=[
 ];
 
 
-const defaultReviews=[
+const defaultReview=[
     {rating:3,description:'blob',userId:1,productId:1},
     {rating:1,description:'blob',userId:2,productId:3},
-    {rating:5,description:'blob',userId:3,productId:1},
-    {rating:2,description:'blob',userId:4,productId:3},
-    {rating:3,description:'blob',userId:1,productId:6},
-    {rating:1,description:'blob',userId:2,productId:1},
     {rating:5,description:'blob',userId:3,productId:2},
-    {rating:2,description:'blob',userId:4,productId:5},
-    {rating:3,description:'blob',userId:1,productId:2},
-    {rating:1,description:'blob',userId:2,productId:1},
-    {rating:5,description:'blob',userId:3,productId:4},
-    {rating:2,description:'blob',userId:4,productId:1}
+    {rating:2,description:'blob',userId:4,productId:4}
 ];
 
 const defaultOrders=[
@@ -51,6 +44,14 @@ const defaultOrders=[
     {status:'created',firstNameShipping:'Sam',lastNameShipping:'Smith',firstNameBilling:'Bob',lastNameBilling:'Smith',shippingAddress:'123 Main St, New York, NY, 10016',billingAddress:'123 Main St, New York, NY, 10016',userId:4},
     {status:'created',firstNameShipping:'Sam',lastNameShipping:'Smith',firstNameBilling:'Bob',lastNameBilling:'Smith',shippingAddress:'123 Main St, New York, NY, 10016',billingAddress:'123 Main St, New York, NY, 10016',userId:5},
     {status:'created',firstNameShipping:'Sally',lastNameShipping:'Smith',firstNameBilling:'Bob',lastNameBilling:'Smith',shippingAddress:'123 Main St, New York, NY, 10016',billingAddress:'123 Main St, New York, NY, 10016',userId:6}
+];
+
+const defaultOrderProducts=[
+    {orderId:1,productId:1,quantity:1,price:100},
+    {orderId:2,productId:2,quantity:1,price:100},
+    {orderId:3,productId:3,quantity:1,price:100},
+    {orderId:4,productId:4,quantity:1,price:100},
+    {orderId:5,productId:1,quantity:1,price:100}
 ];
 
 
@@ -84,6 +85,16 @@ db.sync({force: true})
         })
     })
     .then(() => {
+        return Bluebird.map(defaultOrderProducts, item => {
+            return OrderProduct.create(item);
+        })
+    })
+    .then(() => {
+        return Bluebird.map(defaultReview, item => {
+            return Review.create(item);
+        })
+    })
+    .then(() => {
         console.log('hey it seeded!');
     })
     .catch(err => {
@@ -94,30 +105,3 @@ db.sync({force: true})
         console.log('connection closed!')
     });
 
-
-// function seedDB() {
-//     console.log('Syncing database');
-//
-//     // dunno how to manage promises here...
-//     // needed quick and dirty seed
-//     defaultDummy.map(dummy => {
-//         // console.log(category);
-//         Dummy.create(dummy)
-//             .then(function (data) {
-//                 console.log("DATA",data);
-//                 console.log("++++++++++++++++++++++");
-//                 return data;
-//             });
-//
-//     });
-//     // defaultStudents.map(student => {
-//     //     Students.create(student)
-//     //         .then(function (data) {
-//     //             console.log("DATA",data);
-//     //             console.log("++++++++++++++++++++++");
-//     //
-//     //         });
-//     // });
-// }
-//
-// seedDB();
