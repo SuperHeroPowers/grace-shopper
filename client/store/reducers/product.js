@@ -36,7 +36,7 @@ export const fetchProducts = () =>
 
 export const fetchSingleProduct = (id) =>
   dispatch =>
-    axios.get('/api/products/${id}')
+    axios.get(`/api/products/${id}`)
       .then(res =>
         dispatch(getProduct(res.data)))
       .catch(err => console.log(err));
@@ -50,7 +50,7 @@ export const postProduct = product =>
 
 export const putProduct = (id, product) =>
   dispatch =>
-    axios.put('/api/products/${id}', product)
+    axios.put(`/api/products/${id}`, product)
       .then(res =>
         dispatch(updateProduct(res.data)))
       .catch(err => console.log(err));
@@ -58,7 +58,7 @@ export const putProduct = (id, product) =>
 export const deleteProduct = (id) =>
   dispatch =>
     dispatch(removeProduct(id));
-    axios.delete('/api/products/${id}')
+    axios.delete(`/api/products/${id}`)
       .catch(err => console.log(err));
 /**
  * REDUCER

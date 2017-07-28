@@ -32,14 +32,14 @@ export const postUser = user =>
 
 export const deleteUserPermanant = id =>
   dispatch =>
-    axios.delete('/api/users/${id}')
+    axios.delete(`/api/users/${id}`)
       .then(res =>
         dispatch(deleteUser(res.data)))
       .catch(err => console.log(err));
 
 export const putUser = (id, user) =>
   dispatch =>
-    axios.put('/api/users/${id}', user)
+    axios.put(`/api/users/${id}`, user)
       .then(res =>
         dispatch(updateUser(res.data)))
       .catch(err => console.log(err));

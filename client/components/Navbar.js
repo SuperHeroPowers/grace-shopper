@@ -19,7 +19,7 @@ const Navbar = (props) => {
             <li><Link to="#">Manipulation</Link></li>
             <li><Link to="#">Transportation</Link></li>
           </ul>
-          <form className="navbar-form navbar-left">
+          <form className="navbar-form navbar-left" role="search">
             <div className="form-group">
               <input type="text" className="form-control" placeholder="Search"></input>
             </div>
@@ -30,14 +30,15 @@ const Navbar = (props) => {
           <ul className="nav navbar-nav navbar-right">
             <li><Link to="#">My Account</Link></li>
             <li><Link to="#" onClick={handleClick}>Log out</Link></li>
+            <li><Link to="#">Cart</Link></li>
           </ul>
           :
-              (<li><Link to="#">Sign up</Link></li>
-              <li><Link to="#">Log in</Link></li>)
-            </div>
-          }
-          <li><Link to="#">Cart</Link></li>
+          <ul className="nav navbar-nav navbar-right">
+            <li><Link to="#">Sign up</Link></li>
+            <li><Link to="#">Log in</Link></li>
+            <li><Link to="#">Cart</Link></li>
           </ul>
+          }
         </div>
       </div>
     </nav>
