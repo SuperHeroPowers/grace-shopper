@@ -33,16 +33,20 @@ const Order = db.define('order', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  ccNumber: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
-  ccExpiration: {
-    type: Sequelize.INTEGER,
-  },
-  ccSecurity: {
-    type: Sequelize.INTEGER,
-  },
+
+  //Forpossible future use
+  // ccNumber: {
+  //   type: Sequelize.INTEGER,
+  //   allowNull: false,
+  // },
+  // ccExpiration: {
+  //   type: Sequelize.INTEGER,
+  // },
+  // ccSecurity: {
+  //   type: Sequelize.INTEGER,
+  // },
+
+  
   dateProcessed: {
     type: Sequelize.DATE,
   },
@@ -70,6 +74,5 @@ const Order = db.define('order', {
     }
   }
 });
-
 
 module.exports = Order;
