@@ -1,7 +1,6 @@
 'use strict';
 
 const db = require('./server/db');
-// const models=require('./server/db/models');
 
 const Category=db.models.category;
 const Order=db.models.order;
