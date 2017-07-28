@@ -46,4 +46,9 @@ router.post('/', (req, res, next)=>{
   Order.create(req.body)
   .then(order=> res.status(201).json(order))
   .catch(next);
+<<<<<<< HEAD
 })
+=======
+})
+
+>>>>>>> 7fb88c12a9014d3bb97b4fde0170dfdb91a41def

@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
-
+//category should be required??
 const Product = db.define('product',{
 	name: {
 		type: Sequelize.STRING,
@@ -14,17 +14,20 @@ const Product = db.define('product',{
 		type: Sequelize.TEXT
 	},
 	imagePath:{
-		type: Sequelize.STRING
+		type: Sequelize.STRING,
+        defaultValue: 'https://unsplash.it/g/252/200/?random'
+
 	},
 	category: {
 		type: Sequelize.ARRAY(Sequelize.STRING)
 	},
 	inventory: {
-		type: Sequelize.INTEGER
+		type: Sequelize.INTEGER,
+		defaultValue: 0
 	}
 },{
 	getterMethods: {
-		floatPrice: function() { return this.price / 100.0} 
+		floatPrice: function() { return this.price / 100.0}
 	}
 });
 

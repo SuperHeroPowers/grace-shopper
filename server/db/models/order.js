@@ -34,19 +34,6 @@ const Order = db.define('order', {
     allowNull: false,
   },
 
-  //Forpossible future use
-  // ccNumber: {
-  //   type: Sequelize.INTEGER,
-  //   allowNull: false,
-  // },
-  // ccExpiration: {
-  //   type: Sequelize.INTEGER,
-  // },
-  // ccSecurity: {
-  //   type: Sequelize.INTEGER,
-  // },
-
-  
   dateProcessed: {
     type: Sequelize.DATE,
   },
