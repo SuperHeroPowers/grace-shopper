@@ -56,14 +56,23 @@ const Order = db.define('order', {
   dateDelivered: {
     type: Sequelize.DATE,
   },
-  totalPrice: {
-    type: Sequelize.INTEGER,
-    defaultValue: 0
+}, {
+  instanceMethods: {
+    totalPrice: function() {
+      return OrderProduct.findAll({
+        where: {
+          orderId: this.id
+        }
+      })
+      .then(products => {
+        var total = 0;
+        products.forEach(function(product){
+          total += product.totalProductPrice;
+        });
+        return total;
+      });
+    }
   }
 });
 
-
 module.exports = Order;
-
-
-
