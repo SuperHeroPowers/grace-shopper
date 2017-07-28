@@ -21,7 +21,7 @@ const products = [];
 const getProducts = products => ({type: GET_PRODUCTS, products});
 const getProduct = product => ({type: GET_PRODUCT, product});
 const createProduct = product => ({type: CREATE_PRODUCT, product});
-const removeProduct = product => ({type: REMOVE_PRODUCT, product});
+const removeProduct = id => ({type: REMOVE_PRODUCT, id});
 const updateProduct = product => ({type: UPDATE_PRODUCT, product});
 
 /**
@@ -34,32 +34,31 @@ export const fetchProducts = () =>
         dispatch(getProducts(res.data)))
       .catch(err => console.log(err));
 
-export const fetchSingleProduct = () =>
+export const fetchSingleProduct = (id) =>
   dispatch =>
-    axios.get('/api/products/:productId')
+    axios.get('/api/products/${id}')
       .then(res =>
         dispatch(getProduct(res.data)))
       .catch(err => console.log(err));
 
-export const postProduct = () =>
+export const postProduct = product =>
   dispatch =>
-    axios.post('/api/products')
+    axios.post('/api/products', product)
       .then(res =>
         dispatch(createProduct(res.data)))
       .catch(err => console.log(err));
 
-export const deleteProduct = () =>
+export const putProduct = (id, product) =>
   dispatch =>
-    axios.delete('/api/products/:productId')
-      .then(res =>
-        dispatch(removeProduct(res.data)))
-      .catch(err => console.log(err));
-
-export const putProduct = () =>
-  dispatch =>
-    axios.put('/api/products/:productId')
+    axios.put('/api/products/${id}', product)
       .then(res =>
         dispatch(updateProduct(res.data)))
+      .catch(err => console.log(err));
+
+export const deleteProduct = (id) =>
+  dispatch =>
+    dispatch(removeProduct(id));
+    axios.delete('/api/products/${id}')
       .catch(err => console.log(err));
 /**
  * REDUCER
@@ -75,7 +74,9 @@ export default function (state = products, action) {
     case REMOVE_PRODUCT:
       return state.filter(product => product.id !== action.product.id);
     case UPDATE_PRODUCT:
-      return [...state, action.product];
+      return state.map(product => (
+        action.product.id === product.id ? action.product : product
+      ));
     default:
       return state;
   }

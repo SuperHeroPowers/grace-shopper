@@ -9,6 +9,6 @@ const reducer = combineReducers({user, products});
 const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 const store = createStore(reducer, middleware);
 
-export default store
+export default store;
 export * from './user';
 export * from './products';

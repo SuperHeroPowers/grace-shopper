@@ -23,23 +23,23 @@ const updateUser = user => ({type: UPDATE_USER, user})
 /**
  * THUNK CREATORS
  */
-export const postUser = () =>
+export const postUser = user =>
   dispatch =>
-    axios.post('/api/users/:userId')
+    axios.post('/api/users', user)
       .then(res =>
         dispatch(createUser(res.data)))
       .catch(err => console.log(err));
 
-export const deleteUserPermanant = () =>
+export const deleteUserPermanant = id =>
   dispatch =>
-    axios.delete('/api/users/:userId')
+    axios.delete('/api/users/${id}')
       .then(res =>
         dispatch(deleteUser(res.data)))
       .catch(err => console.log(err));
 
-export const putUser = () =>
+export const putUser = (id, user) =>
   dispatch =>
-    axios.put('/api/users/:userId')
+    axios.put('/api/users/${id}', user)
       .then(res =>
         dispatch(updateUser(res.data)))
       .catch(err => console.log(err));
@@ -54,7 +54,9 @@ export default function (state = users, action) {
     case DELETE_USER:
       return state.filter(user => user.id !== action.user.id);
     case UPDATE_USER:
-      return [...state, action.user]
+      return state.map(user => (
+        action.user.id === user.id ? action.user : user
+      ));
     default:
       return state
   }
