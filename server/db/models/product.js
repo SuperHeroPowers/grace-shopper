@@ -14,13 +14,16 @@ const Product = db.define('product',{
 		type: Sequelize.TEXT
 	},
 	imagePath:{
-		type: Sequelize.STRING
+		type: Sequelize.STRING,
+        defaultValue: 'https://unsplash.it/g/252/200/?random'
+
 	},
 	category: {
 		type: Sequelize.ARRAY(Sequelize.STRING)
 	},
 	inventory: {
-		type: Sequelize.INTEGER
+		type: Sequelize.INTEGER,
+		defaultValue: 0
 	}
 },{
 	getterMethods: {

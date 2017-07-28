@@ -23,4 +23,5 @@ module.exports = {
   Product,
   Category,
   Review
-}
+};
+
