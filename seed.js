@@ -15,7 +15,11 @@ const defaultCategories=[
     {name: 'Plant'},
     {name: 'Earth'},
     {name: 'Water'},
-    {name: 'Human'}
+    {name: 'Human'},
+    {name: 'Physical'},
+    {name: 'Mental'},
+    {name: 'Manipulation'},
+    {name: 'Transportation'}
 ];
 
 const defaultUsers=[
@@ -112,7 +116,35 @@ const defaultProducts=[
     {name: 'Super Speed',price: 100,description: 'description',category:['1']},
     {name: 'Super Hearing',price: 100,description: 'description',category:['2']},
     {name: 'Super Seeing',price: 100,description: 'description',category:['3']},
-    {name: 'Super Super',price: 100,description: 'description',category:['4']}
+    {name: 'Super Super',price: 100,description: 'description',category:['4']},
+    {
+        name: 'Animagus',
+        price: 100,
+        imagePath: 'https://qph.ec.quoracdn.net/main-qimg-4f75d1921b93dfbc2db33130a3b32248.webp',
+        description: 'transform into any animal you want, even a unicorn!',
+        category: ['6']
+    },
+    {
+        name: 'Telepath',
+        price: 500,
+        imagePath: 'http://vignette1.wikia.nocookie.net/babylon5/images/6/62/Psi_Corps_training.JPG/revision/latest?cb=20061004084650',
+        description: 'read that people\'s mind without their consent',
+        category: ['7']
+    },
+    {
+        name: 'Time Travel',
+        price: 1000,
+        imagePath: 'http://globalcomment.com/wp-content/uploads/2016/08/5768498207_c1a154da07_b.jpg',
+        description: 'traveling back in time so you can fix all your mistakes',
+        category: ['8']
+    },
+    {
+        name: 'Fly',
+        price: 200,
+        imagePath: 'https://images.pottermore.com/bxd3o8b291gf/6OqVmtWM484yQKyOS2kCo0/46164b635747242f025cd926c43da212/RonWeasley_PM_B3C13M1_RonFlyingFireboltAtQuidditchPitchWithHarryWatching_Moment.jpg?w=2560&h=1120&fit=thumb&f=top&q=85',
+        description: 'so that you can play Quiddich',
+        category: ['9']
+    }
 ];
 
 
