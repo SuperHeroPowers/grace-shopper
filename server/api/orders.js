@@ -42,3 +42,9 @@ router.put('/:orderId', (req, res, next) => {
   .catch(next)
 });
 
+router.post('/', (req, res, next)=>{
+  Order.create(req.body)
+  .then(order=> res.status(201).json(order))
+  .catch(next);
+})
+
