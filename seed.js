@@ -19,6 +19,10 @@ const defaultCategories=[
 ];
 
 const defaultUsers=[
+    {firstName: 'Danni', lastName:'Liu', email:'danniliu@gmail.com', password:'1234', isAdmin:true},
+    {firstName: 'Monica', lastName:'Choe', email:'monica@gmail.com', password:'1234', isAdmin:true},
+    {firstName: 'Kelaiya', lastName:'Parikh', email:'kelaiya@email.com', password:'1234', isAdmin:false},
+    {firstName: 'Alice', lastName:'Chuang', email:'alice@gmail.com', password:'1234', isAdmin:false},
     {firstName: 'Bob', lastName:'Smith', email:'bob@email.com', password:'1234', isAdmin:false},
     {firstName: 'Tim', lastName:'Smith', email:'tim@email.com', password:'1234', isAdmin:false},
     {firstName: 'Sally', lastName:'Smith', email:'sally@email.com', password:'1234', isAdmin:false},
@@ -42,7 +46,57 @@ const defaultOrders=[
     {status:'created',firstNameShipping:'Sam',lastNameShipping:'Smith',firstNameBilling:'Bob',lastNameBilling:'Smith',shippingAddress:'123 Main St, New York, NY, 10016',billingAddress:'123 Main St, New York, NY, 10016',userId:3},
     {status:'created',firstNameShipping:'Sam',lastNameShipping:'Smith',firstNameBilling:'Bob',lastNameBilling:'Smith',shippingAddress:'123 Main St, New York, NY, 10016',billingAddress:'123 Main St, New York, NY, 10016',userId:4},
     {status:'created',firstNameShipping:'Sam',lastNameShipping:'Smith',firstNameBilling:'Bob',lastNameBilling:'Smith',shippingAddress:'123 Main St, New York, NY, 10016',billingAddress:'123 Main St, New York, NY, 10016',userId:5},
-    {status:'created',firstNameShipping:'Sally',lastNameShipping:'Smith',firstNameBilling:'Bob',lastNameBilling:'Smith',shippingAddress:'123 Main St, New York, NY, 10016',billingAddress:'123 Main St, New York, NY, 10016',userId:6}
+    {status:'created',firstNameShipping:'Sally',lastNameShipping:'Smith',firstNameBilling:'Bob',lastNameBilling:'Smith',shippingAddress:'123 Main St, New York, NY, 10016',billingAddress:'123 Main St, New York, NY, 10016',userId:6},
+    {
+        status:'created',
+        firstNameShipping:'Danni',
+        lastNameShipping:'Liu',
+        firstNameBilling:'Danni',
+        lastNameBilling:'Liu',
+        shippingAddress:'123 Main St, New York, NY, 10016',
+        billingAddress:'123 Main St, New York, NY, 10016',
+        userId:2
+    },
+    {
+        status:'processing',
+        firstNameShipping:'Monica',
+        lastNameShipping:'Choe',
+        firstNameBilling:'Monica',
+        lastNameBilling:'Choe',
+        shippingAddress:'123 Main St, New York, NY, 10016',
+        billingAddress:'123 Main St, New York, NY, 10016',
+        userId:1
+    },
+    {
+        status:'shipped',
+        firstNameShipping:'Kelaiya',
+        lastNameShipping:'Parikh',
+        firstNameBilling:'Kelaiya',
+        lastNameBilling:'Parikh',
+        shippingAddress:'123 Main St, New York, NY, 10016',
+        billingAddress:'123 Main St, New York, NY, 10016',
+        userId:3
+    },
+    {
+        status:'delivered',
+        firstNameShipping:'Alice',
+        lastNameShipping:'Chuang',
+        firstNameBilling:'Alice',
+        lastNameBilling:'Chuang',
+        shippingAddress:'123 Main St, New York, NY, 10016',
+        billingAddress:'123 Main St, New York, NY, 10016',
+        userId:5
+    },
+    {
+        status:'cancelled',
+        firstNameShipping:'Danni',
+        lastNameShipping:'Liu',
+        firstNameBilling:'Danni',
+        lastNameBilling:'Liu',
+        shippingAddress:'123 Main St, New York, NY, 10016',
+        billingAddress:'123 Main St, New York, NY, 10016',
+        userId:2
+    }
 ];
 
 const defaultOrderProducts=[
