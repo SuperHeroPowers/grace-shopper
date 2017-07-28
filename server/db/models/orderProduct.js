@@ -14,19 +14,20 @@ const OrderProduct = db.define('orderProduct',{
 	price: Sequelize.INTEGER
 },{
 	hooks: {
-    beforeValidate: () => {
-    	Order.findById(this.orderId)
-    	.then(function(order){
-    		if (order.status === "created")
-    		{
-    			Product.findById(this.productId)
-    			.then(function(product){
-    				this.price = product.price;
-    			})
-    		}
-    	})
-      
-    }
+    // beforeValidate: () => {
+    // 	Order.findById(this.orderId)
+    // 	.then(function(order){
+    // 		if (order.status === "created")
+    // 		{
+    // 			Product.findById(this.productId)
+    // 			.then(function(product){
+    // 				this.price = product.price;
+    // 			})
+    // 		}
+    // 	})
+    //
+    // }
+
   },
 	getterMethods:{
 		totalProductPrice: function(){

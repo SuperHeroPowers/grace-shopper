@@ -16,6 +16,9 @@ Order.belongsToMany(Product, {through: OrderProduct, foreignKey: 'orderId'});
 Product.belongsToMany(Category, {through: 'ProductCategory', foreignKey: 'productId'});
 Category.belongsToMany(Product, {through: 'ProductCategory', foreignKey: 'categoryId'});
 
+// OrderProduct.belongsTo(Product);
+// OrderProduct.belongsTo(Order);
+
 module.exports = {
   User,
   OrderProduct,
