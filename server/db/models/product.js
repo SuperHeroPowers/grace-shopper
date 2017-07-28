@@ -25,6 +25,10 @@ const Product = db.define('product',{
 		type: Sequelize.INTEGER,
 		defaultValue: 0
 	}
+},{
+	getterMethods: {
+		floatPrice: function() { return this.price / 100.0} 
+	}
 });
 
 module.exports = Product;
