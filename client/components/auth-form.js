@@ -11,24 +11,66 @@ const AuthForm = (props) => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email"><small>Email</small></label>
-          <input name="email" type="text" />
+    <div className="signin-container">
+        <div className="buffer local">
+          <form onSubmit={handleSubmit} name={name}>
+            <div className="form-group">
+              <label>email</label>
+              <input
+                name="email"
+                type="email"
+                className="form-control"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>password</label>
+              <input
+                name="password"
+                type="password"
+                className="form-control"
+                required
+              />
+            </div>
+            <button type="submit" className="btn btn-block btn-primary">{displayName}</button>
+          </form>
         </div>
-        <div>
-          <label htmlFor="password"><small>Password</small></label>
-          <input name="password" type="password" />
+        <div className="or buffer">
+          <div className="back-line">
+            <span>OR</span>
+          </div>
         </div>
-        <div>
-          <button type="submit">{displayName}</button>
+        <div className="buffer oauth">
+          <p>
+            <a
+              target="_self"
+              href="/api/auth/google"
+              className="btn btn-social btn-google">
+              <i className="fa fa-google" />
+              <span>{displayName} with Google</span>
+            </a>
+          </p>
+          <p>
+            <a
+              target="_self"
+              href="/api/auth/github"
+              className="btn btn-social btn-github">
+              <i className="fa fa-github" />
+              <span>{displayName} with GitHub</span>
+            </a>
+          </p>
+          <p>
+            <a
+              target="_self"
+              href="/api/auth/twitter"
+              className="btn btn-social btn-twitter">
+              <i className="fa fa-twitter" />
+              <span>{displayName} with Twitter</span>
+            </a>
+          </p>
         </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <a href="/auth/google">{displayName} with Google</a>
-    </div>
-  )
+      </div>
+    );
 }
 
 /**
@@ -59,6 +101,7 @@ const mapDispatch = (dispatch) => {
     handleSubmit (evt) {
       evt.preventDefault()
       const formName = evt.target.name
+      console.log('formname', formName)
       const email = evt.target.email.value
       const password = evt.target.password.value
       dispatch(auth(email, password, formName))
