@@ -34,6 +34,7 @@ export const auth = (email, password, method) =>
     axios.post(`/auth/${method}`, { email, password })
       .then(res => {
         dispatch(getUser(res.data))
+        console.log('returned from axios post user is logged in, id number ', res.data)
         history.push('/home')
       })
       .catch(error =>

@@ -19,7 +19,8 @@ const Main = (props) => {
   return (
     <div>
       <Navbar isLoggedIn = {isLoggedIn} handleClick={handleClick}/>
-      <Products />
+      <hr />
+      {children}
     </div>
   )
 }

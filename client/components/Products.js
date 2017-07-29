@@ -6,6 +6,7 @@ import { withRouter, NavLink } from 'react-router-dom';
 function Products (props){
   //can take in all products or products in a category
   const elements = props.products;
+
   return (
     <div className="container">
         <div className="row">
