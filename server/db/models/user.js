@@ -5,19 +5,17 @@ const db = require('../db')
 const User = db.define('user', {
   firstName: {
     type:Sequelize.STRING,
-    allowNull: false
-  }, 
+  },
   lastName: {
     type:Sequelize.STRING,
-    allowNull: false
   },
   email: {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false,
-    isEmail: true
+    //isEmail: true
   },
-  // min length 
+  // min length
   // strengthening password with special characters
   password: {
     type: Sequelize.STRING,
