@@ -49,7 +49,7 @@ export default function (state = orders, action) {
   	case GET_ORDERS:
   		return action.orders;
     case UPDATE_ORDER:
-    	return [...state, action.order];
+    	return [...state.filter(order => order.id !== action.order.id), action.order];
    	case CREATE_ORDER:
    		return [...state, action.order];
     default:
