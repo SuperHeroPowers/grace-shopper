@@ -1,5 +1,6 @@
+//this reducer is used for a single user
 import axios from 'axios'
-import history from '../history'
+import history from '../../history'
 
 /**
  * ACTION TYPES

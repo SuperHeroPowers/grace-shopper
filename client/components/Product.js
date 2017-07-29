@@ -7,6 +7,7 @@ import {withRouter, Link} from 'react-router-dom';
  * COMPONENT
  */
 const Product = (props) => {
+  console.log('hello');
   const myProduct = props.products.filter(product => product.id === props.path.productId)[0];
   return (
     <div>
