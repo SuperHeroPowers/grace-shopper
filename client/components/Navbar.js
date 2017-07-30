@@ -52,7 +52,7 @@ export default class Navbar extends Component {
                             <ul className="nav navbar-nav navbar-right">
                               <li><Link to="#">My Account</Link></li>
                               <li><Link to="#" onClick={handleClick}>Log out</Link></li>
-                              <li><Link to="#">Cart</Link></li>
+                              <li><Link to="/cart">Cart</Link></li>
                             </ul>
                             :
                             <ul className="nav navbar-nav navbar-right">
