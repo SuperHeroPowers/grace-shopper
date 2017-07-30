@@ -13,11 +13,16 @@ Product.hasMany(Review);
 Review.belongsTo(Product);
 Product.belongsToMany(Order, {through: OrderProduct, foreignKey: 'productId'});
 Order.belongsToMany(Product, {through: OrderProduct, foreignKey: 'orderId'});
-Product.belongsToMany(Category, {through: 'ProductCategory', foreignKey: 'productId'});
-Category.belongsToMany(Product, {through: 'ProductCategory', foreignKey: 'categoryId'});
+// Product.belongsToMany(Category, {through: 'ProductCategory', foreignKey: 'productId'});
+// Category.belongsToMany(Product, {through: 'ProductCategory', foreignKey: 'categoryId'});
+
+Product.belongsToMany(Category, {through: 'ProductCategory'});
+Category.belongsToMany(Product, {through: 'ProductCategory'});
 
 // OrderProduct.belongsTo(Product);
 // OrderProduct.belongsTo(Order);
+
+// Category.addProduct(Product, { through: { role: 'manager' }});
 
 module.exports = {
   User,
