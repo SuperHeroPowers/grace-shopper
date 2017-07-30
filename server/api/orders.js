@@ -18,13 +18,22 @@ router.get('/:orderId', (req, res, next) => {
     },
     include: [{
       model: Order,
-      where: { id: orderIdNum},
-      include: [{
-        model: Product,
-        where: { orderId: orderIdNum}
-      }]
+      where: { id: orderIdNum}
     }]
   })
+    // OrderProduct.findAll({
+    //     where:{
+    //         orderId : orderIdNum
+    //     },
+    //     include: [{
+    //         model: Order,
+    //         where: { id: orderIdNum},
+    //         include: [{
+    //             model: Product,
+    //             where: { orderId: orderIdNum}
+    //         }]
+    //     }]
+    // })
   .then(orderDetails =>
     res.json(orderDetails)
   )
