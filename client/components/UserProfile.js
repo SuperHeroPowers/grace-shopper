@@ -13,6 +13,13 @@ const UserProfile = (props) => {
           <h3>Welcome, { user.name || user.email}</h3>
           <img src={ user.profileImgPath } className="img-thumbnail" />
         </div>
+        {
+          user.isAdmin &&
+          <div>
+            <button onClick = {onClickEvent} type="button" className="btn-btn-warning">Edit</button>
+            <button onClick = {onClickEvent} type="button" className="btn-btn-danger">Delete</button>
+          </div>
+        }
         <div className="panel panel-default">
           <div className="panel-heading">Order History</div>
           <table className='table'>
@@ -35,8 +42,6 @@ const UserProfile = (props) => {
           }
           </tbody>
         </table>
-        <button onClick = {onClickEvent} type="button" className="btn-btn-warning">Edit</button>
-        <button onClick = {onClickEvent} type="button" className="btn-btn-danger">Delete</button>
       </div>
     </div>
   );
