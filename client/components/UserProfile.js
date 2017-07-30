@@ -10,7 +10,7 @@ const UserProfile = (props) => {
   return (
       <div className="container">
         <div>
-          <h3>{ user.name } || Jane Doe</h3>
+          <h3>Welcome, { user.name || user.email}</h3>
           <img src={ user.imagePath } className="img-thumbnail" />
         </div>
         <div className="panel panel-default">
@@ -65,7 +65,7 @@ const mapStateToProps = function (state, ownProps) {
   //state.user is the current user that is logged in
   return {
     user: state.user,
-    orders: state.orders.find(order => order.userId === userId)
+    orders: state.orders.filter(order => order.userId === state.user.id)
   };
 };
 
