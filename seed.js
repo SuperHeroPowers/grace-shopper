@@ -190,4 +190,3 @@ db.sync({force: true})
         db.close();
         console.log('connection closed!')
     });
-
