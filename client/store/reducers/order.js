@@ -54,5 +54,5 @@ export default function (state = orders, action) {
    	return [...state, action.order];
     default:
       return state;
-  };
-};
+  }
+}
