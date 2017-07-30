@@ -27,7 +27,7 @@ export default class Navbar extends Component {
                 <div className="collapse navbar-collapse">
                   <ul className="nav navbar-nav">
                     <li className='active'><Link to="/">Home</Link></li>
-
+                      <li><Link to="/products">All Products</Link></li>
 
                       {
                           categories.map(category => {
@@ -56,9 +56,9 @@ export default class Navbar extends Component {
                             </ul>
                             :
                             <ul className="nav navbar-nav navbar-right">
-                              <li><Link to="#">Sign up</Link></li>
-                              <li><Link to="#">Log in</Link></li>
-                              <li><Link to="#">Cart</Link></li>
+                              <li><Link to="/signup">Sign up</Link></li>
+                              <li><Link to="/login">Log in</Link></li>
+                              <li><Link to="/cart">Cart</Link></li>
                             </ul>
                     }
                 </div>
