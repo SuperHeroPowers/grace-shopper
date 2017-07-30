@@ -11,7 +11,7 @@ const UserProfile = (props) => {
       <div className="container">
         <div>
           <h3>Welcome, { user.name || user.email}</h3>
-          <img src={ user.imagePath } className="img-thumbnail" />
+          <img src={ user.profileImgPath } className="img-thumbnail" />
         </div>
         <div className="panel panel-default">
           <div className="panel-heading">Order History</div>
