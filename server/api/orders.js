@@ -12,18 +12,16 @@ router.get('/', (req, res, next) => {
 //get all details of a specific order
 router.get('/:orderId', (req, res, next) => {
   const orderIdNum = req.params.orderId;
-  OrderProduct.findAll({
+  Order.findAll({
     where:{
-      orderId : orderIdNum
+      id : orderIdNum
     },
     include: [{
-      model: Order,
-      where: { id: orderIdNum},
-      include: [{
-        model: Product,
-        where: { orderId: orderIdNum}
+      model: Product,
+      through: { 
+        attributes: ['orderId']}
       }]
-    }]
+      
   })
   .then(orderDetails =>
     res.json(orderDetails)

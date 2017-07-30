@@ -3,22 +3,25 @@ import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom'; 
 import store from '../store';
 function OrderList (props) {
-	const {order, users} = props;
+	const {orders, user} = props;
 
 	return(
 	       <ul>
 	       {
-	       	props.order.map(order => {
-	       		
-	       			return (
-	       		        <li key={order.id}>
-	       		        	<NavLink to={`/orders/${order.id}`}>
-	       		        		<span> {order.firstNameShipping} </span>
-	       		        	</NavLink>
-	       		        </li>
-	       		      )
-	       		})
-	       	}
+	    		orders.map( order => {
+	    			return(
+	       		  <li key={order.id}>
+	       		   {
+	       		    if (user.id === userId){
+	       		      <NavLink to={`/orders/${order.id}`}>
+	       		        <span> {order.firstNameShipping} </span>
+	       		      </NavLink>
+	       		    }
+	       		    }
+							</li>
+	       		)
+	    		})
+	       }
 	       </ul>
 				);
 	
@@ -26,8 +29,8 @@ function OrderList (props) {
 	const mapStateToProps = function(state, ownProps){
 		console.log("props",state.orders, state.user)
 		return {
-			order: state.order,
-			users: state.users
+			orders: state.orders,
+			user: state.user
 		};
 	};
 
