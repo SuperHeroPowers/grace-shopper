@@ -4,12 +4,9 @@ import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
 import Navbar from './Navbar'
-<<<<<<< HEAD
 import OrderList from './OrderList';
 import { Route, Switch, Redirect } from 'react-router-dom';
-=======
 import Products from './Products'
->>>>>>> fbae9e6d52f7730e3abb815c59a291ca3fd1ce77
 
 /**
  * COMPONENT
@@ -23,16 +20,10 @@ const Main = (props) => {
 
   return (
     <div>
-<<<<<<< HEAD
-    <Switch>
       <Navbar isLoggedin = {false} handleClick={handleClick}/>
       <Route path="/orders" component={OrderList} />
-      {children}
-      </Switch>
-=======
       <Navbar isLoggedIn = {isLoggedIn} handleClick={handleClick}/>
       <Products />
->>>>>>> fbae9e6d52f7730e3abb815c59a291ca3fd1ce77
     </div>
   )
 }
