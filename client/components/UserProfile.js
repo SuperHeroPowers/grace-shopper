@@ -1,11 +1,14 @@
 //renders user info and past order history
+//two ways to navigate to this page: through /account or through /users:userId.
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { deleteUserPermanant, putUser } from '../store';
 import { NavLink } from 'react-router-dom';
 
 const UserProfile = (props) => {
-  const { user, orders, onClickEvent } = props;
+  const { user, currentUser, orders, onClickEvent } = props;
+  //the profile owner and the admin can edit and delete this profile
+  const authorized = currentUser && (currentUser.isAdmin || currentUser.id === user.id);
 
   return (
       <div className="container">
@@ -14,11 +17,11 @@ const UserProfile = (props) => {
           <img src={ user.profileImgPath } className="img-thumbnail" />
         </div>
         {
-          user.isAdmin &&
+          authorized ?
           <div>
             <button onClick = {onClickEvent} type="button" className="btn-btn-warning">Edit</button>
             <button onClick = {onClickEvent} type="button" className="btn-btn-danger">Delete</button>
-          </div>
+          </div> : null
         }
         <div className="panel panel-default">
           <div className="panel-heading">Order History</div>
@@ -49,11 +52,6 @@ const UserProfile = (props) => {
 
 class UserProfileLoader extends Component {
 
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.user.id !== this.props.user.id) {
-      this.props.user = nextProps.user;
-    }
-  }
   onClickEvent(evt){
     const user = this.props.user;
     evt.preventDefault();
@@ -68,8 +66,12 @@ class UserProfileLoader extends Component {
 
 const mapStateToProps = function (state, ownProps) {
   //state.user is the current user that is logged in
+  const userId = Number(ownProps.match.params.userId);
   return {
-    user: state.user,
+    //the logged in user is current user
+    currentUser: state.user,
+    //if userId is not in the params, navigated through /home
+    user: state.users.find(user => user.id === userId) || state.user,
     orders: state.orders.filter(order => order.userId === state.user.id)
   };
 };
