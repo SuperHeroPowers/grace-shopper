@@ -68,12 +68,3 @@ export default class Navbar extends Component {
 
   }
 }
-
-// const Navbar = (props) => {
-//
-//   const {handleClick, isLoggedIn} = props;
-//
-//
-// }
-
-// export default Navbar;
