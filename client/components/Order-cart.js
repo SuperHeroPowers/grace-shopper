@@ -22,8 +22,9 @@ export default class OrderCart extends Component{
         return (
             <div>
                 <h1>CART</h1>
+                <h2>Order ID #200</h2>
                 <ul>
-                    <li>Order ID #200 {order.orderId} placed by Bob Smith</li>
+                    <li>Placed by Bob Smith</li>
                     <li>Shipping Name</li>
                     <li>Shipping Address</li>
                     <li>Billing Name</li>
@@ -33,7 +34,13 @@ export default class OrderCart extends Component{
                     <li>Date Shipped</li>
                     <li>Date Delivered</li>
                 </ul>
-
+                <h3>Order Detail</h3>
+                <ul>
+                    <li>Product Item</li>
+                    <li>Product Item</li>
+                    <li>Product Item</li>
+                    <li>Product Item</li>
+                </ul>
             </div>
         )
     }
