@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Router} from 'react-router'
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, Redirect} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, Products} from './components'
-import {me, fetchProducts} from './store'
+import {Main, Login, Signup, UserProfile, Products, Product} from './components'
+import {me, fetchProducts, fetchOrders} from './store'
 
 /**
  * COMPONENT
@@ -25,18 +25,20 @@ class Routes extends Component {
         <Main>
           <Switch>
             {/* Routes placed here are available to all visitors */}
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/products" component={Products} />
+            <Route path="/products/:productId" component={Product} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/products" component={Products} />
             {
               isLoggedIn ?
                 <Switch>
                   {/* Routes placed here are only available after logging in */}
-                  <Route path="/home" component={UserHome} />
+
+                  <Route exact path="/home" component={UserProfile} />
                 </Switch> : null
             }
             {/* Displays our Login component as a fallback */}
-            <Route component={Login} />
+            <Redirect to='/products'/>
           </Switch>
         </Main>
       </Router>
@@ -60,6 +62,7 @@ const mapDispatch = (dispatch) => {
     loadInitialData () {
       dispatch(me());
       dispatch(fetchProducts());
+      dispatch(fetchOrders());
     }
   }
 }

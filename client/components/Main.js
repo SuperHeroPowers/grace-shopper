@@ -3,10 +3,9 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
-import Navbar from './Navbar'
 import OrderList from './OrderList';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import Products from './Products'
+import {Navbar, Products, UserProfile} from './index'
 
 /**
  * COMPONENT
@@ -20,10 +19,10 @@ const Main = (props) => {
 
   return (
     <div>
-      <Navbar isLoggedin = {false} handleClick={handleClick}/>
       <Route path="/orders" component={OrderList} />
       <Navbar isLoggedIn = {isLoggedIn} handleClick={handleClick}/>
-      <Products />
+      <hr />
+      {children}
     </div>
   )
 }

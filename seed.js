@@ -11,15 +11,13 @@ const User=db.models.user;
 const Bluebird = require('bluebird');
 
 const defaultCategories=[
-    {name: 'Animal'},
-    {name: 'Plant'},
-    {name: 'Earth'},
-    {name: 'Water'},
-    {name: 'Human'},
-    {name: 'Physical'},
-    {name: 'Mental'},
-    {name: 'Manipulation'},
-    {name: 'Transportation'}
+    {name: 'Physical', productId: 4},
+    {name: 'Physical', productId: 5},
+    {name: 'Physical', productId: 6},
+    {name: 'Physical', productId: 7},
+    {name: 'Mental', productId: 2},
+    {name: 'Manipulation', productId: 1},
+    {name: 'Transportation', productId: 3}
 ];
 
 const defaultUsers=[
@@ -38,7 +36,7 @@ const defaultUsers=[
 
 
 const defaultReview=[
-    {rating:3,description:'blob',userId:1,productId:1},
+    {rating:5,description:'',userId:1,productId:1},
     {rating:1,description:'blob',userId:2,productId:3},
     {rating:5,description:'blob',userId:3,productId:2},
     {rating:2,description:'blob',userId:4,productId:4}
@@ -105,47 +103,46 @@ const defaultOrders=[
 
 const defaultOrderProducts=[
     {orderId:1,productId:1,quantity:1,price:100},
-    {orderId:2,productId:2,quantity:1,price:100},
-    {orderId:3,productId:3,quantity:1,price:100},
-    {orderId:4,productId:4,quantity:1,price:100},
-    {orderId:5,productId:1,quantity:1,price:100},
-    {orderId:5,productId:5,quantity:1,price:100}
+    {orderId:2,productId:2,quantity:1,price:500},
+    {orderId:3,productId:3,quantity:2,price:1000},
+    {orderId:4,productId:4,quantity:1,price:200},
+    {orderId:5,productId:5,quantity:1,price:100},
+    {orderId:5,productId:6,quantity:1,price:100}
 ];
 
 
 const defaultProducts=[
-    {name: 'Super Speed',price: 100,description: 'description',category:['1']},
-    {name: 'Super Hearing',price: 100,description: 'description',category:['2']},
-    {name: 'Super Seeing',price: 100,description: 'description',category:['3']},
-    {name: 'Super Super',price: 100,description: 'description',category:['4']},
     {
         name: 'Animagus',
         price: 100,
         imagePath: 'https://qph.ec.quoracdn.net/main-qimg-4f75d1921b93dfbc2db33130a3b32248.webp',
         description: 'transform into any animal you want, even a unicorn!',
-        category: ['6']
+        categoryId: 3
     },
     {
         name: 'Telepath',
         price: 500,
         imagePath: 'http://vignette1.wikia.nocookie.net/babylon5/images/6/62/Psi_Corps_training.JPG/revision/latest?cb=20061004084650',
         description: 'read that people\'s mind without their consent',
-        category: ['7']
+        categoryId: 2
     },
     {
         name: 'Time Travel',
         price: 1000,
         imagePath: 'http://globalcomment.com/wp-content/uploads/2016/08/5768498207_c1a154da07_b.jpg',
         description: 'traveling back in time so you can fix all your mistakes',
-        category: ['8']
+        categoryId: 4
     },
     {
         name: 'Fly',
         price: 200,
         imagePath: 'https://images.pottermore.com/bxd3o8b291gf/6OqVmtWM484yQKyOS2kCo0/46164b635747242f025cd926c43da212/RonWeasley_PM_B3C13M1_RonFlyingFireboltAtQuidditchPitchWithHarryWatching_Moment.jpg?w=2560&h=1120&fit=thumb&f=top&q=85',
         description: 'so that you can play Quiddich',
-        category: ['9']
-    }
+        categoryId: 1
+    },
+    {name: 'Super Speed',price: 100,imagePath: 'https://i.ytimg.com/vi/hZbjSJsO1C8/maxresdefault.jpg', description: 'race to the finishing line',categoryId:1},
+    {name: 'Super Hearing',price: 100,imagePath:'https://lh3.googleusercontent.com/EhBrVuxTt8F0jKteBJ7uMQFTs-0yaXeSztViZxBIOmhGNJe56nYJPIgGuE3UCI-R_8w=h900',description: 'evesdropping in on people has never been so easy!',categoryId:1},
+    {name: 'X-Ray Vision',price: 100,imagePath: 'https://timenerdworld.files.wordpress.com/2012/04/x-ray-glasses.jpg?w=360&h=240&crop=1', description: 'nothing on earth can hide form your prying eyes',categoryId:1},
 ];
 
 
