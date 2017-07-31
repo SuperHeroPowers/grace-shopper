@@ -11,13 +11,9 @@ function OrderList (props) {
 	    		orders.map( order => {
 	    			return(
 	       		  <li key={order.id}>
-	       		   {
-	       		    if (user.id === userId){
 	       		      <NavLink to={`/orders/${order.id}`}>
 	       		        <span> {order.firstNameShipping} </span>
 	       		      </NavLink>
-	       		    }
-	       		    }
 							</li>
 	       		)
 	    		})

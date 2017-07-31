@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Category} = require('../db/models')
+const {Category, Product} = require('../db/models')
 
 // GET all categories
 router.get('/', (req, res, next) => {
@@ -11,10 +11,19 @@ router.get('/', (req, res, next) => {
 // GET all products of specific category
 // returns array
 router.get('/:categoryId', (req, res, next)=>{
-	Category.findById(req.params.categoryId)
-	.then(category => {
-		return category.getProducts()
+	const ans = req.params.categoryId;
+	Category.findAll({
+		where: {
+			id : ans 
+		},
+		include:[Product]
 	})
+	
+
+	// })
+	// .then(category => {
+	// 	return category.getProducts()
+	// })
 	.then(products => res.json(products))
 	.catch(next);
 });

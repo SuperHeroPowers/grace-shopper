@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Order, OrderProduct, Product} = require('../db/models');
+const {Order, OrderProduct, Product, User} = require('../db/models');
 module.exports = router;
 
 // view a list of all orders (admin access only)
@@ -25,6 +25,21 @@ router.get('/:orderId', (req, res, next) => {
   })
   .then(orderDetails =>
     res.json(orderDetails)
+  )
+  .catch(next);
+});
+
+router.get('/:orderId/users', (req, res, next) => {
+  const orderIdNum = req.params.orderId;
+  Order.findAll({
+    where:{
+      id : orderIdNum
+    },
+    include: [{model: User }]
+      
+  })
+  .then(orderUser =>
+    res.json(orderUser)
   )
   .catch(next);
 });
