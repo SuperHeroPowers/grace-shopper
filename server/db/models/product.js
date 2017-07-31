@@ -18,9 +18,6 @@ const Product = db.define('product',{
         defaultValue: 'https://unsplash.it/g/252/200/?random'
 
 	},
-	category: {
-		type: Sequelize.ARRAY(Sequelize.STRING)
-	},
 	inventory: {
 		type: Sequelize.INTEGER,
 		defaultValue: 0

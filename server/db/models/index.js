@@ -16,7 +16,7 @@ Review.belongsTo(Product);
 Product.belongsToMany(Category, {through: 'ProductCategory', foreignKey: 'productId'});
 Category.belongsToMany(Product, {through: 'ProductCategory', foreignKey: 'categoryId'});
 
-// do not remove
+// do not remove replaced the above
 OrderProduct.belongsTo(Product);
 OrderProduct.belongsTo(Order);
 // do not remove

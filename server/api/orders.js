@@ -9,14 +9,21 @@ router.get('/', (req, res, next) => {
   .catch(next);
 });
 
-//get all details of a specific order
+//get Order+User
 router.get('/:orderId', (req, res, next) => {
   const orderIdNum = req.params.orderId;
-  OrderProduct.findAll({
-    where:{
-      orderId : orderIdNum
-    },
-    include: [{model: Order, include: [ User ]}, Product]
+    // OrderProduct.findAll({
+    //   where:{
+    //     orderId : orderIdNum
+    //   },
+    //   include: [{model: Order, include: [ User ]}, Product]
+    // })
+
+  Order.findAll({
+      where:{
+        id:orderIdNum
+      },
+      include:[User]
   })
   .then(orderDetails =>
     res.json(orderDetails)
@@ -24,7 +31,33 @@ router.get('/:orderId', (req, res, next) => {
   .catch(next);
 });
 
-// router.get('/:orderId/orderProducts')
+router.get('/:orderId/orderProducts', (req, res, next) => {
+    const orderIdNum = req.params.orderId;
+    OrderProduct.findAll({
+      where:{
+        orderId : orderIdNum
+      },
+      include: [Product]
+    })
+    .then(orderDetails =>
+        res.json(orderDetails)
+    )
+    .catch(next);
+
+
+    // Order.findAll({
+    //     where:{
+    //         id : orderIdNum
+    //     },
+    //     include: [{
+    //         model: Product,
+    //         through: {
+    //             attributes: ['orderId']}
+    //     }]
+    //
+    // })
+});
+
 
 //change the status of order (admin only)
 router.put('/:orderId', (req, res, next) => {

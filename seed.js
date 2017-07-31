@@ -11,15 +11,15 @@ const User=db.models.user;
 const Bluebird = require('bluebird');
 
 const defaultCategories=[
-    {name: 'Animal'},
-    {name: 'Plant'},
-    {name: 'Earth'},
-    {name: 'Water'},
-    {name: 'Human'},
-    {name: 'Physical'},
-    {name: 'Mental'},
-    {name: 'Manipulation'},
-    {name: 'Transportation'}
+    {id:1, name: 'Animal'},
+    {id:2, name: 'Plant'},
+    {id:3, name: 'Earth'},
+    {id:4, name: 'Water'},
+    {id:5, name: 'Human'},
+    {id:6, name: 'Physical'},
+    {id:7, name: 'Mental'},
+    {id:8, name: 'Manipulation'},
+    {id:9, name: 'Transportation'}
 ];
 
 const defaultUsers=[
@@ -114,37 +114,37 @@ const defaultOrderProducts=[
 
 
 const defaultProducts=[
-    {name: 'Super Speed',price: 100,description: 'description',category:['1']},
-    {name: 'Super Hearing',price: 100,description: 'description',category:['2']},
-    {name: 'Super Seeing',price: 100,description: 'description',category:['3']},
-    {name: 'Super Super',price: 100,description: 'description',category:['4']},
+    {name: 'Super Speed',price: 100,description: 'description',category:[{id:1, name: 'Animal'}]},
+    {name: 'Super Hearing',price: 100,description: 'description',category:[{id:1, name: 'Animal'}]},
+    {name: 'Super Seeing',price: 100,description: 'description',category:[{id:1, name: 'Animal'}]},
+    {name: 'Super Super',price: 100,description: 'description',category:[{id:1, name: 'Animal'}]},
     {
         name: 'Animagus',
         price: 100,
         imagePath: 'https://qph.ec.quoracdn.net/main-qimg-4f75d1921b93dfbc2db33130a3b32248.webp',
         description: 'transform into any animal you want, even a unicorn!',
-        category: ['6']
+        category: [{id:1, name: 'Animal'}]
     },
     {
         name: 'Telepath',
         price: 500,
         imagePath: 'http://vignette1.wikia.nocookie.net/babylon5/images/6/62/Psi_Corps_training.JPG/revision/latest?cb=20061004084650',
         description: 'read that people\'s mind without their consent',
-        category: ['7']
+        category: [{id:1, name: 'Animal'}]
     },
     {
         name: 'Time Travel',
         price: 1000,
         imagePath: 'http://globalcomment.com/wp-content/uploads/2016/08/5768498207_c1a154da07_b.jpg',
         description: 'traveling back in time so you can fix all your mistakes',
-        category: ['8']
+        category: [{id:1, name: 'Animal'}]
     },
     {
         name: 'Fly',
         price: 200,
         imagePath: 'https://images.pottermore.com/bxd3o8b291gf/6OqVmtWM484yQKyOS2kCo0/46164b635747242f025cd926c43da212/RonWeasley_PM_B3C13M1_RonFlyingFireboltAtQuidditchPitchWithHarryWatching_Moment.jpg?w=2560&h=1120&fit=thumb&f=top&q=85',
         description: 'so that you can play Quiddich',
-        category: ['9']
+        category: [{id:1, name: 'Animal'}]
     }
 ];
 
@@ -162,7 +162,11 @@ db.sync({force: true})
     })
     .then(() => {
         return Bluebird.map(defaultProducts, item => {
-            return Product.create(item);
+            return Product.create(item, {
+                include: [{
+                    model: Category
+                }]
+            });
         })
     })
     .then(() => {
