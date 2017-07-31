@@ -63,16 +63,16 @@ const Order = db.define('order', {
       });
     }
   },
-  hooks: {
-    beforeCreate: {
-      function(order) {
-        if (!order.userId){
-          localStorage.setItem("sessionId", process.env.SESSION_SECRET);
-          order.sessionId = localStorage.getItem("sessionId");
-        }
-      }
-    }
-  }
+//   hooks: {
+//     afterCreate: {
+//       function(order) {
+//         if (!order.userId){
+//           localStorage.setItem("sessionId", process.env.SESSION_SECRET);
+//           order.sessionId = localStorage.getItem("sessionId");
+//         }
+//       }
+//     }
+//   }
 });
 
 module.exports = Order;
