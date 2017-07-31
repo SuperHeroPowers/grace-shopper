@@ -29,7 +29,7 @@ export const fetchOrder = order =>
       	.then(res => dispatch(getOrder(res.data || orders)))
       	.catch(err => console.log(err));
 
-export const postOrder = order =>
+export const postOrder = order => 
 	dispatch =>
 		axios.post('/api/orders', order)
 		.then(res => dispatch(createOrder(res.data || orders)))
