@@ -8,10 +8,13 @@ import {withRouter, Link} from 'react-router-dom';
  */
 const Product = (props) => {
   console.log('hello');
-  const myProduct = props.products.filter(product => product.id === props.path.productId)[0];
+  console.log(props.path);
+  const myProduct = props.products.filter(product => Number(product.id) === Number(props.path.productId))[0];
+  console.log('asdf', props.products)
+  console.log('hello', myProduct);
   return (
     <div>
-      <img src={myProduct.imgPath}></img>
+      <img src={myProduct.imagePath}></img>
       <h3>{myProduct.name}</h3>
       <h5>{myProduct.floatPrice}</h5>
       <p>{myProduct.description}</p>
@@ -27,11 +30,11 @@ const Product = (props) => {
 const mapState = (state, ownProps) => {
   return {
     products: state.products,
-    path: ownProps.match.url
+    path: ownProps.match.params
   }
 }
 
-// Write map dispatch to props
+// Write map dispatch to props!!!
 const mapDispatch = (dispatch) => {
   return {
     handleClick () {

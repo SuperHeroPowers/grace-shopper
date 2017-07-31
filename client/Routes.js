@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Router} from 'react-router'
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, Redirect} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 import {Main, Login, Signup, UserProfile, Products, Product} from './components'
@@ -28,7 +28,7 @@ class Routes extends Component {
             <Route path="/products/:productId" component={Product} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
-            <Route exact path="/" component={Products} />
+            <Route exact path="/products" component={Products} />
             {
               isLoggedIn ?
                 <Switch>
@@ -38,7 +38,7 @@ class Routes extends Component {
                 </Switch> : null
             }
             {/* Displays our Login component as a fallback */}
-            <Route component={Products} />
+            <Redirect to='/products'/>
           </Switch>
         </Main>
       </Router>
