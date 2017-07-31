@@ -11,10 +11,12 @@ User.hasMany(Review);
 Review.belongsTo(User);
 Product.hasMany(Review);
 Review.belongsTo(Product);
-// Product.belongsToMany(Order, {through: OrderProduct, foreignKey: 'productId'});
-// Order.belongsToMany(Product, {through: OrderProduct, foreignKey: 'orderId'});
 Product.belongsToMany(Category, {through: 'ProductCategory', foreignKey: 'productId'});
 Category.belongsToMany(Product, {through: 'ProductCategory', foreignKey: 'categoryId'});
+// Product.hasMany(Category); //created a key in Product table we didn't want?
+
+// Product.belongsToMany(Order, {through: OrderProduct, foreignKey: 'productId'});
+// Order.belongsToMany(Product, {through: OrderProduct, foreignKey: 'orderId'});
 
 // do not remove replaced the above
 OrderProduct.belongsTo(Product);

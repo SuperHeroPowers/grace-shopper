@@ -43,19 +43,6 @@ router.get('/:orderId/orderProducts', (req, res, next) => {
         res.json(orderDetails)
     )
     .catch(next);
-
-
-    // Order.findAll({
-    //     where:{
-    //         id : orderIdNum
-    //     },
-    //     include: [{
-    //         model: Product,
-    //         through: {
-    //             attributes: ['orderId']}
-    //     }]
-    //
-    // })
 });
 
 

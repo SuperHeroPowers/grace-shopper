@@ -167,6 +167,17 @@ db.sync({force: true})
                     model: Category
                 }]
             });
+
+
+            // .then(function (product){
+            //     Product.setCategory([product, product.category]);
+            // });
+
+
+
+            // Project.create({ id: 11 }).then(function (project) {
+                //     user.addProjects([project, 12]);
+            // });
         })
     })
     .then(() => {
