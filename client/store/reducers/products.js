@@ -13,16 +13,20 @@ const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 /**
  * INITIAL STATE
  */
-const products = [];
+ // state.products.list
+const products = {
+  list: [],
+  selected: {}
+};
 
 /**
  * ACTION CREATORS
  */
 const getProducts = products => ({type: GET_PRODUCTS, products});
 const getProduct = product => ({type: GET_PRODUCT, product});
-const createProduct = product => ({type: CREATE_PRODUCT, product});
-const removeProduct = id => ({type: REMOVE_PRODUCT, id});
-const updateProduct = product => ({type: UPDATE_PRODUCT, product});
+// const createProduct = product => ({type: CREATE_PRODUCT, product});
+// const removeProduct = id => ({type: REMOVE_PRODUCT, id});
+// const updateProduct = product => ({type: UPDATE_PRODUCT, product});
 
 /**
  * THUNK CREATORS
@@ -45,7 +49,7 @@ export const postProduct = product =>
   dispatch =>
     axios.post('/api/products', product)
       .then(res =>
-        dispatch(createProduct(res.data)))
+        dispatch(fetchProducts()))
       .catch(err => console.log(err));
 
 export const putProduct = (id, product) =>
@@ -64,20 +68,26 @@ export const putProduct = (id, product) =>
  * REDUCER
  */
 export default function (state = products, action) {
+  const newState = Object.assign({}, state)
   switch (action.type) {
     case GET_PRODUCT:
-      return [...state, action.product];
+      //return [...state, action.product];
+      newState.selected = action.product;
+      break;
     case GET_PRODUCTS:
-      return action.products;
-    case CREATE_PRODUCT:
-      return [...state, action.product];
-    case REMOVE_PRODUCT:
-      return state.filter(product => product.id !== action.product.id);
-    case UPDATE_PRODUCT:
-      return state.map(product => (
-        action.product.id === product.id ? action.product : product
-      ));
+      //return action.products;
+      newState.list = action.products;
+      break;
+    // case CREATE_PRODUCT:
+    //   return [...state, action.product];
+    // case REMOVE_PRODUCT:
+    //   return state.filter(product => product.id !== action.product.id);
+    // case UPDATE_PRODUCT:
+    //   return state.map(product => (
+    //     action.product.id === product.id ? action.product : product
+    //   ));
     default:
-      return state;
+      return newState;
   }
+  return newState
 }

@@ -48,6 +48,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.24.1",
     "chai": "^3.5.0",
+    "chai-enzyme": "^0.8.0",
     "css-loader": "^0.26.1",
     "enzyme": "^2.8.2",
     "file-loader": "^0.11.2",

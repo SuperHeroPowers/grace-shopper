@@ -25,7 +25,7 @@ function Products (props){
 
 const mapStateToProps = function (state, ownProps) {
   return {
-    products: state.products,
+    products: state.products.list,
     path: ownProps.match.url //matched portion of url
   };
 };

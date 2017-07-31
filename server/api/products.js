@@ -33,8 +33,13 @@ router.post('/', (req, res, next)=>{
 // Admin use
 // PUT specific product
 router.put('/:productId', (req, res, next)=>{
-	Product.update(req.body, {where: {id : req.params.productId}, returning: true})
-	.then(product => res.status(200).json(product))
+	Product.update(req.body,
+		{
+			where: {id : req.params.productId},
+			returning: true
+		}
+	)
+	.then(([_, [product]]) => res.status(200).json(product))
 	.catch(next);
 });
 

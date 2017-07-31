@@ -14,6 +14,7 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
+// SH: hide salt and password
 //returns a specific user by userid
 router.get('/:userId', (req, res, next) => {
   const userIdNum = req.params.userId;
@@ -36,9 +37,9 @@ router.get('/:userId/orders', (req, res, next) => {
 //get all reviews by a user
 router.get('/:userId/reviews', (req, res, next) => {
   const userIdNum = req.params.userId;
-  if(!Number(userId)){res.sendStatus(500);}
+  if(!Number(userIdNum)){res.sendStatus(500);}
   else{
-    Reviews.findAll({
+    Review.findAll({
       where: {
         userId: userIdNum
       },
@@ -58,7 +59,7 @@ router.get('/:userId/reviews', (req, res, next) => {
 
 //add a review from user
 router.post('/:userId/review', (req, res, next) => {
-  return Review.create (req.body)
+  return Review.create(req.body)
   .then(newReview => {
     res.sendStatus(201).json(newReview)
   })
@@ -68,6 +69,7 @@ router.post('/:userId/review', (req, res, next) => {
 
 // Admin Use
 // POST new user
+// SH: authenticating in react components can be dangerous for security reasons
 router.post('/', (req, res, next)=>{
   return User.create(req.body)
   .then(user => res.status(201).json(user));

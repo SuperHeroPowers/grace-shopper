@@ -16,6 +16,7 @@ router.get('/:orderId', (req, res, next) => {
     where:{
       orderId : orderIdNum
     },
+    // SH: not working
     include: [{
       model: Order,
       where: { id: orderIdNum},

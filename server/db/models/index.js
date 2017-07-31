@@ -13,7 +13,11 @@ Product.hasMany(Review);
 Review.belongsTo(Product);
 Product.belongsToMany(Order, {through: OrderProduct, foreignKey: 'productId'});
 Order.belongsToMany(Product, {through: OrderProduct, foreignKey: 'orderId'});
+
+// SH: Needed for getter and setter methods the association makes
 Product.belongsToMany(Category, {through: 'ProductCategory', foreignKey: 'productId'});
+
+// SH: May not be necessary
 Category.belongsToMany(Product, {through: 'ProductCategory', foreignKey: 'categoryId'});
 
 // OrderProduct.belongsTo(Product);
@@ -27,4 +31,3 @@ module.exports = {
   Category,
   Review
 };
-
