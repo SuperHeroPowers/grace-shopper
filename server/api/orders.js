@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Order, OrderProduct, Product} = require('../db/models');
+const {Order, OrderProduct, Product,User} = require('../db/models');
 module.exports = router;
 
 // view a list of all orders (admin access only)
@@ -16,29 +16,15 @@ router.get('/:orderId', (req, res, next) => {
     where:{
       orderId : orderIdNum
     },
-    include: [{
-      model: Order,
-      where: { id: orderIdNum}
-    }]
+    include: [{model: Order, include: [ User ]}, Product]
   })
-    // OrderProduct.findAll({
-    //     where:{
-    //         orderId : orderIdNum
-    //     },
-    //     include: [{
-    //         model: Order,
-    //         where: { id: orderIdNum},
-    //         include: [{
-    //             model: Product,
-    //             where: { orderId: orderIdNum}
-    //         }]
-    //     }]
-    // })
   .then(orderDetails =>
     res.json(orderDetails)
   )
   .catch(next);
 });
+
+// router.get('/:orderId/orderProducts')
 
 //change the status of order (admin only)
 router.put('/:orderId', (req, res, next) => {
