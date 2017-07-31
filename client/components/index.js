@@ -10,3 +10,4 @@ export {default as Navbar} from './Navbar'
 export {default as AllUsers} from './AllUsers'
 export {Login, Signup} from './auth-form'
 export {default as Product} from './Product';
+export {default as Cart} from './Order-cart';
