@@ -28,14 +28,14 @@ const Navbar = (props) => {
           {
           isLoggedIn ?
           <ul className="nav navbar-nav navbar-right">
-            <li><Link to="#">My Account</Link></li>
-            <li><Link to="#" onClick={handleClick}>Log out</Link></li>
+            <li><Link to="/home">My Account</Link></li>
+            <li><Link to="/logout" onClick={handleClick}>Log out</Link></li>
             <li><Link to="#">Cart</Link></li>
           </ul>
           :
           <ul className="nav navbar-nav navbar-right">
-            <li><Link to="#">Sign up</Link></li>
-            <li><Link to="#">Log in</Link></li>
+            <li><Link to="/signup">Sign up</Link></li>
+            <li><Link to="/login">Log in</Link></li>
             <li><Link to="#">Cart</Link></li>
           </ul>
           }
