@@ -3,6 +3,7 @@ import history from '../../history';
 
 // Initial State
 const orders = [];
+const order = {};
 
 // Action Types
 const GET_ORDER = 'GET_ORDER';

@@ -23,8 +23,10 @@ router.get('/:orderId', (req, res, next) => {
       }]
       
   })
-  .then(orderDetails =>
+  .then(orderDetails =>{
+    console.log("hey")
     res.json(orderDetails)
+  }
   )
   .catch(next);
 });

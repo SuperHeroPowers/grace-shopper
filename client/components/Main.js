@@ -5,7 +5,7 @@ import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
 import OrderList from './OrderList';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import {Navbar, Products, UserProfile} from './index'
+import {Navbar, Products, UserProfile, OrderProduct} from './index'
 
 /**
  * COMPONENT
@@ -19,7 +19,6 @@ const Main = (props) => {
 
   return (
     <div>
-      <Route path="/orders" component={OrderList} />
       <Navbar isLoggedIn = {isLoggedIn} handleClick={handleClick}/>
       <hr />
       {children}

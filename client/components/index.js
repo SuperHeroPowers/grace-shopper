@@ -9,3 +9,5 @@ export {default as Products} from './Products'
 export {default as Navbar} from './Navbar'
 export {Login, Signup} from './auth-form'
 export {default as Product} from './Product';
+export {default as OrderList} from './OrderList';
+export {default as OrderProduct} from './OrderProduct';
