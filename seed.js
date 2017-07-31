@@ -69,6 +69,15 @@ const defaultOrders=[
         billingAddress:'123 Main St, New York, NY, 10016',
         userId:1
     },
+        {
+        status:'processing',
+        firstNameShipping:'Monica NO USER',
+        lastNameShipping:'Choe',
+        firstNameBilling:'Monica',
+        lastNameBilling:'Choe',
+        shippingAddress:'123 Main St, New York, NY, 10016',
+        billingAddress:'123 Main St, New York, NY, 10016',
+    },
     {
         status:'shipped',
         firstNameShipping:'Kelaiya',
