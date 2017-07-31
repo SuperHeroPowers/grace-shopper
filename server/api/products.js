@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const {Product} = require('../db/models');
+const {Product, User} = require('../db/models');
+
 
 // GET all products
 router.get('/', (req, res, next)=>{
@@ -14,6 +15,35 @@ router.get('/:productId', (req, res, next)=>{
 	.then(product => res.json(product))
 	.catch(next);
 });
+
+// // Admin use
+// // PUT specific product
+// router.put('/:productId', (req, res, next)=>{
+// 	authRouter.get('/auth/me', (req, res) =>
+//     req.user)
+// 	.then(user => {
+// 		if (user.isAdmin){
+// 			Product.update(req.body, {where: {id : req.params.productId}, returning: true})
+// 			.then(product => res.status(200).json(product))
+// 		}
+// 		else {
+// 			res.sendStatus(401)
+// 		}
+// 	})
+// 	.catch(next);
+// });
+
+// // Admin use
+// // DELETE specific product
+// router.delete('/:productId', (req, res, next)=> {
+// 	Product.destroy({
+// 		where : {
+// 			id : req.params.productId
+// 		}
+// 	})
+// 	.then(()=>res.sendStatus(204))
+// 	.catch(next);
+// });
 
 // GET specific product's reviews
 router.get('/:productId/reviews', (req, res,next)=>{
@@ -30,23 +60,5 @@ router.post('/', (req, res, next)=>{
 	.catch(next);
 });
 
-// Admin use
-// PUT specific product
-router.put('/:productId', (req, res, next)=>{
-	Product.update(req.body, {where: {id : req.params.productId}, returning: true})
-	.then(product => res.status(200).json(product))
-	.catch(next);
-});
 
-// Admin use
-// DELETE specific product
-router.delete('/:productId', (req, res, next)=> {
-	Product.destroy({
-		where : {
-			id : req.params.productId
-		}
-	})
-	.then(()=>res.sendStatus(204))
-	.catch(next);
-});
 module.exports = router;

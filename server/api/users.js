@@ -17,7 +17,12 @@ router.get('/', (req, res, next) => {
 //returns a specific user by userid
 router.get('/:userId', (req, res, next) => {
   const userIdNum = req.params.userId;
-  return User.findById(userIdNum)
+  return User.findOne({
+    where: {
+      id: userIdNum
+    },
+    attributes: ['id', 'firstName', 'lastName', 'email']
+  })
   .then(user => res.json(user))
   .catch(next);
 });
@@ -36,15 +41,16 @@ router.get('/:userId/orders', (req, res, next) => {
 //get all reviews by a user
 router.get('/:userId/reviews', (req, res, next) => {
   const userIdNum = req.params.userId;
-  if(!Number(userId)){res.sendStatus(500);}
+  if(!Number(userIdNum)){res.sendStatus(500);}
   else{
-    Reviews.findAll({
+    Review.findAll({
       where: {
         userId: userIdNum
       },
-      include: {
-        model: User
-      }
+      include: [{
+        model: User,
+        attributes: ['id', 'firstName', 'lastName', 'email']
+      }]
     })
     .then(function (userReviews) {
       if(userReviews){res.json(userReviews)}
