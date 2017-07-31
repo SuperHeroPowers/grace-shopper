@@ -10,7 +10,7 @@ const AllUsers = (props) => {
 
   const {users, currentUser} = props;
   const authorized = currentUser.isAdmin;
-
+  console.log('rendering all users component')
   return (
     <div>
     {
@@ -27,7 +27,7 @@ const AllUsers = (props) => {
             activeClassName="active"
             to={`/users/${user.id}`}>
             <h4 className="media-heading tucked">
-              <span placeholder="Jean Doe">{user.name}</span>
+              <span placeholder="Jean Doe">{user.firstName + ' ' + user.lastName}</span>
             </h4>
             <h5 className="tucked">
               <span>{user.email}</span>
