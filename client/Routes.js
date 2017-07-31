@@ -30,12 +30,12 @@ class Routes extends Component {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/products" component={Products} />
             {
-              isLoggedIn ?
+              isLoggedIn &&
                 <Switch>
                   {/* Routes placed here are only available after logging in */}
 
                   <Route exact path="/home" component={UserProfile} />
-                </Switch> : null
+                </Switch> 
             }
             {/* Displays our Login component as a fallback */}
             <Redirect to='/products'/>
