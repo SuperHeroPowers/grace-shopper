@@ -54,10 +54,5 @@ export default function (state = orders, action) {
    	return [...state, action.order];
     default:
       return state;
-<<<<<<< HEAD
-  };
-};
-=======
   }
 }
->>>>>>> 9fe04dc9843a6b8998c7c428816f37972a21dde6
