@@ -36,14 +36,14 @@ const authorized = (userId) => {
 
 router.post('/', (req, res, next)=>{
 	const userId = req.session.userId;
-	authorized(userId, next)
+	authorized(userId)
 	.then(authorized => {
 	  authorized ?
 	  Product.create(req.body)
   	  .then(product => res.status(201).json(product))
   	  .catch(next)
 	  :
-    res.sendStatus(401)
+    res.redirect('https://http.cat/[401]')
   })
 });
 

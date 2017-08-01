@@ -73,20 +73,46 @@ router.post('/:userId/review', (req, res, next) => {
 
 
 // Admin Use
-// POST new user
-router.post('/', (req, res, next)=>{
-  return User.create(req.body)
-  .then(user => res.status(201).json(user));
+// Update user info and delete user
+
+const authorizedAdminOrUser = (userId, currentUserId) => {
+  return User.findOne({
+    where: {
+      id: currentUserId
+    },
+    attributes: ['id', 'isAdmin']
+  })
+  .then(user => user && (userId === currentUserId || user.isAdmin))
+}
+
+router.put('/:userId', (req, res, next)=>{
+  const userId = req.params.userId; //user that someone want to update
+  const currentUserId = req.session.userId; //current person wanting to update said user
+  authorizedAdminOrUser(userId, currentUserId)
+  .then(authorized => {
+    authorized ?
+      User.update(req.body, {where: {id : userId}, returning: true})
+      .then(user => res.status(200).json(user))
+      .catch(next)
+    :
+    res.sendStatus(401)
+  })
 });
 
-// Admin Use
-// DELETE user
 router.delete('/:userId', (req, res, next)=>{
-  return User.destroy({
-    where: {
-      id: res.params.userId
-    }
+  const userId = req.params.userId; //user that someone want to update
+  const currentUserId = req.session.userId; //current person wanting to update said user
+  authorizedAdminOrUser(userId, currentUserId)
+  .then(authorized => {
+  authorized ?
+    User.destroy({
+      where: {
+        id: userId
+      }
+    })
+    .then(()=> res.sendStatus(204))
+    .catch(next)
+    :
+    res.sendStatus(401)
   })
-  .then(()=> res.sendStatus(204))
-  .catch(next);
 })

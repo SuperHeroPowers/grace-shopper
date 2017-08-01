@@ -31,19 +31,36 @@ router.get('/:orderId', (req, res, next) => {
   .catch(next);
 });
 
-//change the status of order (admin only)
-router.put('/:orderId', (req, res, next) => {
-  Order.findById(req.params.orderId)
-  .then(order => {
-    order.update({
-      status: req.body
-    });
-  })
-  .catch(next)
-});
-
 router.post('/', (req, res, next)=>{
   Order.create(req.body)
   .then(order=> res.status(201).json(order))
   .catch(next);
 })
+
+//change the status of order (admin only)
+const authorized = (userId) => {
+  return User.findOne({
+    where: {
+      id: userId
+    },
+    attributes: ['id', 'isAdmin']
+  })
+  .then(user => user && user.isAdmin)
+}
+
+router.put('/:orderId', (req, res, next) => {
+  const userId = req.session.userId;
+  authorized(userId)
+  .then(authorized => {
+    authorized ?
+    Order.findById(req.params.orderId)
+    .then(order => {
+      order.update({
+        status: req.body
+      });
+    })
+    .catch(next)
+    :
+    res.sendStatus(401)
+  })
+});
