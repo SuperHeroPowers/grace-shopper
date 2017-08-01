@@ -36,13 +36,9 @@ export default class OrderCart extends Component{
         });
 
         axios.get('api/orders/5/orderProducts')
-        .then(res => {
-            console.log('CLOG',res,res.data);
-            res.data;
-            }
-        )
+        .then(res => res.data)
         .then(orderProducts => {
-            // console.log('ORDER',order,order[0],order[0].user);
+            console.log('prods',orderProducts);
             this.setState({ orderProducts});
         });
     }
@@ -50,8 +46,8 @@ export default class OrderCart extends Component{
     render(){
         const order=this.state.order;
         const user=this.state.user;
-        const orderDetail={};
-        console.log('ORDER COMPONENT',user.firstName);
+        const orderProducts=this.state.orderProducts;
+        console.log('ORDER COMPONENT',user.firstName,orderProducts);
         return (
             <div className="container">
                 <h1>CART</h1>
@@ -65,66 +61,61 @@ export default class OrderCart extends Component{
 
 
             <div className="col-md-9">
-            <div className="page-header">
-                <h1>Order #{order.id}: <Link to=""><button type="button" className="btn btn-lg btn-primary">Edit</button></Link></h1>
-            </div>
-            <div className="row">
-                <div className="col-md-4">
-                    <ul>
-                        <li>Placed by {user.firstName} {user.lastName} {user.email}</li>
-                        <li>Shipping Address {order.firstNameShipping} {order.lastNameShipping}</li>
-                        <li>Billing Name {order.firstNameBilling} {order.lastNameBilling}</li>
-                        <li>Billing Address {order.shippingAddress}</li>
-                        <li>Date Processed {order.dateProcessed}</li>
-                        <li>Date Shipped {order.dateShipped}</li>
-                        <li>Date Delivered {order.dateDelivered}</li>
-                        <li>Status {order.status}</li>
-                    </ul>
-                </div>
-
-            </div>
-            <div className="row">
-                <div className="col-md-12">
                 <div className="page-header">
-                <h2>All Items in Order
-                <Link to="/students/new">
-                <button type="button" className="btn btn-primary">+ Add Student</button>
-                </Link>
-            </h2>
-            </div>
+                    <h1>Order #{order.id}: <Link to=""><button type="button" className="btn btn-lg btn-primary">Edit</button></Link></h1>
+                </div>
+                <div className="row">
+                    <div className="col-md-4">
+                        <ul>
+                            <li>Placed by {user.firstName} {user.lastName} {user.email}</li>
+                            <li>Shipping Address {order.firstNameShipping} {order.lastNameShipping}</li>
+                            <li>Billing Name {order.firstNameBilling} {order.lastNameBilling}</li>
+                            <li>Billing Address {order.shippingAddress}</li>
+                            <li>Date Processed {order.dateProcessed}</li>
+                            <li>Date Shipped {order.dateShipped}</li>
+                            <li>Date Delivered {order.dateDelivered}</li>
+                            <li>Status {order.status}</li>
+                        </ul>
+                    </div>
 
-            <table className="table table-striped">
-                <thead>
-                <tr>
-                <th>#</th>
-                <th>Product Name</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                </tr>
-                </thead>
-                <tbody>
-                {
-                    // students.map(students => {
-                    // return (
-                    // <tr key={students.id}>
-                    // <td>{ students.id }</td>
-                    // <td><Link
-                    // to={`/students/view/${students.id}`}>{ `${students.firstName} ${students.lastName}`}</Link>
-                    // </td>
-                    // <td><Link
-                    // to={`/campuses/view/${students.campus.id}`}>{ students.campus.name }</Link>
-                    // </td>
-                    // <td>{ students.email }</td>
-                    // <td>{`@${students.firstName}`}</td>
-                    // <td className="text-right"><button type="button" onClick={this.handleClick} id={students.id} className="btn btn-xs btn-danger">delete</button></td>
-                    // </tr>
-                    // );
-                    // })
-                }
-            </tbody>
-            </table>
-            </div>
-            </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="page-header">
+                            <h2>All Items in Order</h2>
+                        </div>
+
+                        <table className="table table-striped">
+                            <thead>
+                            <tr>
+                            <th>#</th>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                orderProducts.map(item => {
+                                return (
+                                <tr key={item.id}>
+                                <td>{ item.id }</td>
+                                <td><Link
+                                to={`/item/view/${item.id}`}>{ `${item.product.name}`}</Link>
+                                </td>
+                                <td><Link to={`/campuses/view/${item.id}`}>{ item.product.name }</Link>
+                                </td>
+                                <td>{ item.email }</td>
+                                <td>{`@${item.firstName}`}</td>
+                                <td className="text-right"><button type="button" onClick={this.handleClick} id={item.id} className="btn btn-xs btn-danger">delete</button></td>
+                                </tr>
+                                );
+                                })
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
             </div>
