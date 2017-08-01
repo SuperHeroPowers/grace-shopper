@@ -4,7 +4,13 @@ module.exports = router;
 
 // view a list of all orders (admin access only)
 router.get('/', (req, res, next) => {
-  Order.findAll({})
+  Order.findAll({
+    include: [{
+      model: Product,
+      through: { 
+        attributes: ['orderId']}
+      }]
+  })
   .then(orders => res.json(orders))
   .catch(next);
 });

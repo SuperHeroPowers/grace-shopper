@@ -21,13 +21,15 @@ const updateOrder = order => ({type: UPDATE_ORDER, order});
 export const fetchOrders = () =>
   	dispatch =>
     	axios.get('/api/orders')
-      	.then(res => dispatch(getOrders(res.data || orders)))
+      	.then(res => {console.log("data",res.data);
+              dispatch(getOrders(res.data || orders))})
       	.catch(err => console.log(err));
 
 export const fetchOrder = order =>
   	dispatch =>
     	axios.get(`/api/orders/${order.id}`)
-      	.then(res => dispatch(getOrder(res.data || orders)))
+      	.then(res => {console.log("actual data");
+              dispatch(getOrder(res.data || orders))})
       	.catch(err => console.log(err));
 
 export const postOrder = order => 

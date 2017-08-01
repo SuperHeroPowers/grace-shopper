@@ -12,10 +12,15 @@ router.get('/', (req, res, next) => {
 // returns array
 router.get('/:categoryId', (req, res, next)=>{
 	const ans = req.params.categoryId;
-	ProductCategory.findAll({
+	Category.findAll({
 		where: {
 			id : ans 
-		},include
+		},include: [{
+			model: Product,
+			through: {
+				model: OrderProduct
+			}
+		}]
 		
 	})
 	

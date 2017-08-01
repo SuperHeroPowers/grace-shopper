@@ -13,7 +13,7 @@ function Products (props){
           elements.map(el =>
           (<div key = {el.id} className="col-sm-6 col-md-4">
             <NavLink to={`${props.path}/${el.id}`} className="thumbnail">
-            <img className="img-responsive" src={el.imagePath}></img></NavLink>
+            <img className="img-responsive" width="500" height="300" src={el.imagePath}></img></NavLink>
             <h4>{el.name}</h4>
             <h4>$ {el.price}</h4>
           </div>)
