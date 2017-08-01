@@ -57,8 +57,10 @@ const Order = db.define('order', {
       .then(products => {
         var total = 0;
         products.forEach(function(product){
+          console.log()
           total += product.totalProductPrice;
         });
+        console.log("total",total);
         return total;
       });
     }
