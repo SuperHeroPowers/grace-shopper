@@ -39,8 +39,10 @@ router.get('/:orderId/orderProducts', (req, res, next) => {
       },
       include: [Product]
     })
-    .then(orderDetails =>
-        res.json(orderDetails)
+    .then(orderDetails =>{
+            res.json(orderDetails);
+    }
+
     )
     .catch(next);
 });
