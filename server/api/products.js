@@ -16,35 +16,6 @@ router.get('/:productId', (req, res, next)=>{
 	.catch(next);
 });
 
-// // Admin use
-// // PUT specific product
-// router.put('/:productId', (req, res, next)=>{
-// 	authRouter.get('/auth/me', (req, res) =>
-//     req.user)
-// 	.then(user => {
-// 		if (user.isAdmin){
-// 			Product.update(req.body, {where: {id : req.params.productId}, returning: true})
-// 			.then(product => res.status(200).json(product))
-// 		}
-// 		else {
-// 			res.sendStatus(401)
-// 		}
-// 	})
-// 	.catch(next);
-// });
-
-// // Admin use
-// // DELETE specific product
-// router.delete('/:productId', (req, res, next)=> {
-// 	Product.destroy({
-// 		where : {
-// 			id : req.params.productId
-// 		}
-// 	})
-// 	.then(()=>res.sendStatus(204))
-// 	.catch(next);
-// });
-
 // GET specific product's reviews
 router.get('/:productId/reviews', (req, res,next)=>{
 	Product.findById(req.params.productId)
@@ -53,12 +24,57 @@ router.get('/:productId/reviews', (req, res,next)=>{
 });
 
 // Admin use
-// POST new product
+const authorized = (userId) => {
+	return User.findOne({
+    where: {
+      id: userId
+    },
+    attributes: ['id', 'isAdmin']
+  })
+  .then(user => user && user.isAdmin)
+}
+
 router.post('/', (req, res, next)=>{
-	Product.create(req.body)
-	.then(product => res.status(201).json(product))
-	.catch(next);
+	const userId = req.session.userId;
+	authorized(userId, next)
+	.then(authorized => {
+	  authorized ?
+	  Product.create(req.body)
+  	  .then(product => res.status(201).json(product))
+  	  .catch(next)
+	  :
+    res.sendStatus(401)
+  })
 });
 
+router.put('/:productId', (req, res, next)=>{
+	const userId = req.session.userId;
+	authorized(userId, next)
+	.then(authorized => {
+	  authorized ?
+	  	Product.update(req.body, {where: {id : req.params.productId}, returning: true})
+    	.then(product => res.status(200).json(product))
+    	.catch(next)
+	  :
+    res.sendStatus(401)
+  })
+});
+
+router.delete('/:productId', (req, res, next)=>{
+	const userId = req.session.userId;
+	authorized(userId, next)
+	.then(authorized => {
+	  authorized ?
+	  Product.destroy({
+      where : {
+        id : req.params.productId
+      }
+    })
+    .then(()=>res.sendStatus(204))
+    .catch(next)
+	  :
+    res.sendStatus(401)
+  })
+});
 
 module.exports = router;
