@@ -8,7 +8,7 @@ const Cart = (props) => {
   {user, cart} = props;
 	return (
 		<div>
-
+      
 		</div>
 	)
 };
