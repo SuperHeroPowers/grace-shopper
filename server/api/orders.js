@@ -1,10 +1,16 @@
 const router = require('express').Router();
-const {Order, OrderProduct, Product,User} = require('../db/models');
+const {Order, OrderProduct, Product, User} = require('../db/models');
 module.exports = router;
 
 // view a list of all orders (admin access only)
 router.get('/', (req, res, next) => {
-  Order.findAll({})
+  Order.findAll({
+    include: [{
+      model: Product,
+      through: { 
+        attributes: ['orderId']}
+      }]
+  })
   .then(orders => res.json(orders))
   .catch(next);
 });
@@ -12,19 +18,39 @@ router.get('/', (req, res, next) => {
 //get all details of a specific order
 router.get('/:orderId', (req, res, next) => {
   const orderIdNum = req.params.orderId;
-  OrderProduct.findAll({
+  Order.findAll({
     where:{
-      orderId : orderIdNum
+      id : orderIdNum
     },
-    include: [{model: Order, include: [ User ]}, Product]
+    include: [{
+      model: Product,
+      through: { 
+        attributes: ['orderId']}
+      }]
+      
   })
-  .then(orderDetails =>
+  .then(orderDetails =>{
+    console.log("hey")
     res.json(orderDetails)
+  }
   )
   .catch(next);
 });
 
-// router.get('/:orderId/orderProducts')
+router.get('/:orderId/users', (req, res, next) => {
+  const orderIdNum = req.params.orderId;
+  Order.findAll({
+    where:{
+      id : orderIdNum
+    },
+    include: [{model: User }]
+      
+  })
+  .then(orderUser =>
+    res.json(orderUser)
+  )
+  .catch(next);
+});
 
 //change the status of order (admin only)
 router.put('/:orderId', (req, res, next) => {

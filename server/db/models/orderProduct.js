@@ -12,6 +12,7 @@ const OrderProduct = db.define('orderProduct',{
 	},
 	//here price is the price when the order was placed.
 	price: Sequelize.INTEGER
+
   },{
 	// hooks: {
  //    beforeValidate: () => {

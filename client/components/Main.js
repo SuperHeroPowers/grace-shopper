@@ -1,9 +1,11 @@
-import React from 'react'
+import React , {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
-import {Navbar, Products, UserProfile} from './index'
+import OrderList from './OrderList';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import {Navbar, Products, UserProfile, OrderProduct} from './index'
 
 /**
  * COMPONENT
