@@ -3,15 +3,33 @@ const {User, Order, OrderProduct, Product, Review} = require('../db/models')
 module.exports = router
 
 //admin only
+const authorizedAdmin = (userId) => {
+  return User.findOne({
+    where: {
+      id: userId
+    },
+    attributes: ['id', 'isAdmin']
+  })
+  .then(user => user && user.isAdmin)
+}
+
 router.get('/', (req, res, next) => {
-  User.findAll({
     // explicitly select only the id and email fields - even though
     // users' passwords are encrypted, it won't help if we just
     // send everything to anyone who asks!
-    attributes: ['id', 'email']
-  })
+    //user that someone want to update
+    const userId = req.session.userId; //current person wanting to update said user
+    authorizedAdmin(userId)
+    .then(authorized => {
+    authorized ?
+      User.findAll({
+        attributes: ['id', 'email']
+      })
     .then(users => res.json(users))
     .catch(next)
+    :
+    res.sendStatus(401)
+  })
 })
 
 //returns a specific user by userid
@@ -72,9 +90,8 @@ router.post('/:userId/review', (req, res, next) => {
 });
 
 
-// Admin Use
+// Admin or user
 // Update user info and delete user
-
 const authorizedAdminOrUser = (userId, currentUserId) => {
   return User.findOne({
     where: {
