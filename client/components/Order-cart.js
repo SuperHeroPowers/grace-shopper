@@ -66,17 +66,30 @@ export default class OrderCart extends Component{
                 </div>
                 <div className="row">
                     <div className="col-md-4">
+                        <h3>Shipping</h3>
                         <ul>
                             <li>Placed by {user.firstName} {user.lastName} {user.email}</li>
                             <li>Shipping Address {order.firstNameShipping} {order.lastNameShipping}</li>
-                            <li>Billing Name {order.firstNameBilling} {order.lastNameBilling}</li>
-                            <li>Billing Address {order.shippingAddress}</li>
-                            <li>Date Processed {order.dateProcessed}</li>
-                            <li>Date Shipped {order.dateShipped}</li>
-                            <li>Date Delivered {order.dateDelivered}</li>
                             <li>Status {order.status}</li>
                         </ul>
                     </div>
+                    <div className="col-md-4">
+                        <h3>Billing</h3>
+                        <ul>
+                            <li>Placed by {user.firstName} {user.lastName} {user.email}</li>
+                            <li>Billing Name {order.firstNameBilling} {order.lastNameBilling}</li>
+                            <li>Billing Address {order.shippingAddress}</li>
+                        </ul>
+                    </div>
+                    <div className="col-md-4">
+                        <h3>Status: {order.status}</h3>
+                        <ul>
+                            <li>Date Processed {order.dateProcessed}</li>
+                            <li>Date Shipped {order.dateShipped}</li>
+                            <li>Date Delivered {order.dateDelivered}</li>
+                        </ul>
+                    </div>
+
 
                 </div>
                 <div className="row">
@@ -92,6 +105,7 @@ export default class OrderCart extends Component{
                             <th>Product Name</th>
                             <th>Quantity</th>
                             <th>Price</th>
+                            <th>Total</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -103,10 +117,10 @@ export default class OrderCart extends Component{
                                 <td><Link
                                 to={`/item/view/${item.id}`}>{ `${item.product.name}`}</Link>
                                 </td>
-                                <td><Link to={`/campuses/view/${item.id}`}>{ item.product.name }</Link>
+                                <td><Link to={`/campuses/view/${item.id}`}>{ item.quantity }</Link>
                                 </td>
-                                <td>{ item.email }</td>
-                                <td>{`@${item.firstName}`}</td>
+                                <td>{ item.price }</td>
+                                <td>3.00</td>
                                 <td className="text-right"><button type="button" onClick={this.handleClick} id={item.id} className="btn btn-xs btn-danger">delete</button></td>
                                 </tr>
                                 );
