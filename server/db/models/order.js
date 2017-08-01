@@ -14,29 +14,22 @@ const Order = db.define('order', {
   },
   firstNameShipping: {
     type: Sequelize.STRING,
-    allowNull: false,
   },
   lastNameShipping: {
     type: Sequelize.STRING,
-    allowNull: false,
   },
   firstNameBilling: {
     type: Sequelize.STRING,
-    allowNull: false,
   },
   lastNameBilling: {
     type: Sequelize.STRING,
-    allowNull: false,
   },
   shippingAddress : {
     type: Sequelize.STRING,
-    allowNull: false,
   },
   billingAddress: {
     type: Sequelize.STRING,
-    allowNull: false,
   },
-
   dateProcessed: {
     type: Sequelize.DATE,
   },
