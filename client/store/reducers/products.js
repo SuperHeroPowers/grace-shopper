@@ -18,6 +18,7 @@ const products = [];
 /**
  * ACTION CREATORS
  */
+ //instead of three create remove and upate, make this into an object that contain selected product and an array. When updating a product dispatch bth putproduct and fetchsingle product
 const getProducts = products => ({type: GET_PRODUCTS, products});
 const getProduct = product => ({type: GET_PRODUCT, product});
 const createProduct = product => ({type: CREATE_PRODUCT, product});
