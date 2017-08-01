@@ -27,7 +27,6 @@ router.get('/:orderId', (req, res, next) => {
       through: { 
         attributes: ['orderId']}
       }]
-      
   })
   .then(orderDetails =>{
     console.log("hey")
@@ -51,6 +50,8 @@ router.get('/:orderId/users', (req, res, next) => {
   )
   .catch(next);
 });
+
+// router.get('/:orderId/orderProducts')
 
 //change the status of order (admin only)
 router.put('/:orderId', (req, res, next) => {
