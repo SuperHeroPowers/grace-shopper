@@ -44,6 +44,9 @@ export default class OrderCart extends Component{
     }
 
     render(){
+        var styles = {
+            width:'50px'
+        };
         const order=this.state.order;
         const user=this.state.user;
         const orderProducts=this.state.orderProducts;
@@ -98,6 +101,8 @@ export default class OrderCart extends Component{
                             <h2>All Items in Order</h2>
                         </div>
 
+
+                        <form action="post">
                         <table className="table table-striped">
                             <thead>
                             <tr>
@@ -109,6 +114,7 @@ export default class OrderCart extends Component{
                             </tr>
                             </thead>
                             <tbody>
+
                             {
                                 orderProducts.map(item => {
                                 return (
@@ -117,7 +123,11 @@ export default class OrderCart extends Component{
                                 <td><Link
                                 to={`/item/view/${item.id}`}>{ `${item.product.name}`}</Link>
                                 </td>
-                                <td><Link to={`/campuses/view/${item.id}`}>{ item.quantity }</Link>
+                                <td><input type="text" className="form-control" id="quantity" style={styles} aria-describedby="quantity"
+                                           defaultValue={item.quantity}
+                                           placeholder={item.quantity}
+                                />
+                                    {/*<Link to={`/campuses/view/${item.id}`}>{ item.quantity }</Link>*/}
                                 </td>
                                 <td>{ item.price }</td>
                                 <td>3.00</td>
@@ -128,6 +138,7 @@ export default class OrderCart extends Component{
                             }
                             </tbody>
                         </table>
+                        </form>
                     </div>
                 </div>
             </div>
