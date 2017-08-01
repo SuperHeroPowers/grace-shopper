@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Category, Product} = require('../db/models')
+const db = require('../db');
 
 // GET all categories
 router.get('/', (req, res, next) => {
@@ -12,70 +13,30 @@ router.get('/', (req, res, next) => {
 // returns array
 router.get('/:categoryId', (req, res, next)=>{
 	const ans = req.params.categoryId;
-	Category.findAll({
-		where: {
-			id : ans 
-		},include: [{
-			model: Product,
-			through: {
-				model: OrderProduct
-			}
-		}]
-		
-	})
-	
-
-	// })
-	// .then(category => {
-	// 	return category.getProducts()
-	// })
+	Category.findById(req.params.categoryId)
+	.then(category => category.getProducts())
 	.then(products => res.json(products))
 	.catch(next);
 });
 
 // Admin use
 // POST new category
-// Admin use
-const authorized = (userId) => {
-	return User.findOne({
-    where: {
-      id: userId
-    },
-    attributes: ['id', 'isAdmin']
-  })
-  .then(user => user && user.isAdmin)
-}
-
 router.post('/', (req, res, next)=>{
-	const userId = req.session.userId;
-	authorized(userId)
-	.then(authorized => {
-	  authorized ?
-	  Category.create(req.body)
-			.then(category => res.status(201).json(category))
-			.catch(next)
-	  :
-    res.redirect('https://http.cat/[401]')
-  })
+	Category.create(req.body)
+	.then(category => res.status(201).json(category))
+	.catch(next);
 });
 
 // Admin use
 // DELETE category
 router.delete('/:categoryId', (req, res, next)=> {
-	const userId = req.session.userId;
-	authorized(userId)
-	.then(authorized => {
-	  authorized ?
-		Category.destory({
-			where : {
-				id : req.params.categoryId
-			}
-		})
-		.then(()=>res.sendStatus(204))
-		.catch(next)
-		:
-		res.sendStatus(401)
+	Category.destory({
+		where : {
+			id : req.params.categoryId
+		}
 	})
+	.then(()=>res.sendStatus(204))
+	.catch(next);
 });
 
 module.exports = router;
