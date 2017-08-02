@@ -2,6 +2,7 @@ import axios from 'axios';
 import history from '../../history';
 
 // Initial State
+// Storing all carts found in the database
 const carts=[];
 
 // Action Types
@@ -27,29 +28,38 @@ export const fetchCarts = () =>
               dispatch(getCarts(res || carts))})
       	.catch(err => console.log(err));
 
-export const addToCart = (product, userId) =>
-    dispatch =>
-      axios.get()
+
+// export const addToCart = (product, user) =>
+//     dispatch =>
+//       axios.get('/api/orders')
+//       .then(res => res.data.filter(order => order.status === 'created' && order.userId === user.id))
+//       .then(res => {
+//         if (res.length === 0){
+//           dispatch(postCart({
+//             userId: user.id, 
+//             productId: product.Id
+//           }))
+//         } else{
+//           dispatch(putCart({
+//             orderId: res.[0].id
+//           }))
+//         })
 
 
-  axios.get cart
-  if null -> created
-    add 
-
-export const postCart = order => 
+export const postCart = (order) => 
 	dispatch =>
-		axios.post('/api/orders', order)
+		axios.post('/api/orders', order )
 		.then(res => dispatch(createOrder(res.data || orders)))
 		.catch(err => console.log(err));
 
-export const putOrder = order =>
-	dispatch =>
-		axios.put(`/api/orders/${order.id}`, order)
-		.then(res => dispatch(updateOrder(res.data || orders)))
-		.catch(err => console.log(err));
+// export const putOrder = order =>
+// 	dispatch =>
+// 		axios.put(`/api/orders/${order.id}`, order)
+// 		.then(res => dispatch(updateOrder(res.data || orders)))
+// 		.catch(err => console.log(err));
 
 // Reducer
-export default function (state = orders, action) {
+export default function (state = carts, action) {
   switch (action.type) {
    case GET_CARTS:
       	return action.carts;

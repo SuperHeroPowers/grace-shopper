@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db');
-const {OrderProduct} = ('../db/models');
+const OrderProduct = require('./orderProduct');
 
 //foreign id: userId
 const Order = db.define('order', {
@@ -40,8 +40,25 @@ const Order = db.define('order', {
     type: Sequelize.DATE,
   },
 }, {
+  getterMethods: {
+    totalPrice: function(){
+      let total = 0;
+      return OrderProduct.findAll({
+        where: {
+          orderId: this.id
+        }
+      })
+      .then(products => {
+        products.forEach(function(product){
+          console.log()
+          total += product.totalProductPrice;
+        });
+        console.log("total",total);
+      });
+    }
+  },
   instanceMethods: {
-    totalPrice: function() {
+    totalPrice2: function() {
       return OrderProduct.findAll({
         where: {
           orderId: this.id

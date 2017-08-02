@@ -8,7 +8,7 @@ function OrderProduct (props) {
 	console.log('props', props)
 	console.log("props.path", props.path)
 	console.log("orders",props.orders);
-	const order = orders.filter(function(orderPro){return (Number(orderPro.id) === Number(props.path.orderId))})[0]
+	const order = orders.filter(function(orderPro){return (orderPro.status !== 'created')&& (Number(orderPro.id) === Number(props.path.orderId))})[0]
 	console.log("order",order.products);
 
 	return (<div>

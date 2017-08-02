@@ -3,12 +3,16 @@ import { connect } from 'react-redux';
 
 /** COMPONENT **/
 const Cart = (props) => {
-	console.log('hello', props.user);
-	console.log('asdfasdf', props.cart);
-  {user, cart} = props;
-	return (
+  const {user, carts} = props;
+  const cart = carts.filter(order => order.userId === props.user.id && order.status === 'created')[0]
+	console.log(props);
+  console.log('hello', cart);
+  console.log('price??', cart.totalPrice);
+  return (
 		<div>
-      
+      {cart.products.map(product => {
+        console.log(product)
+        return (<div><img src={product.imagePath} /><h6>{product.name}</h6></div>)})}
 		</div>
 	)
 };
@@ -17,7 +21,7 @@ const Cart = (props) => {
 const mapState = (state, ownProps) => {
   return {
     user : state.user,
-    cart: state.orders.filter(order => order.userId === state.user.id && order.status === 'created')[0]
+    carts : state.carts
   }
 }
 
