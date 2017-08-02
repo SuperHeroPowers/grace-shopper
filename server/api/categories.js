@@ -15,7 +15,9 @@ router.get('/:categoryId', (req, res, next)=>{
 	const ans = req.params.categoryId;
 	Category.findById(req.params.categoryId)
 	.then(category => category.getProducts())
-	.then(products => res.json(products))
+	.then(products => {
+		res.json(products)
+	})
 	.catch(next);
 });
 

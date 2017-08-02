@@ -14,10 +14,10 @@ const Navbar = (props) => {
         <div className="collapse navbar-collapse">
           <ul className="nav navbar-nav">
             <li className='active'><Link to="/">Home</Link></li>
-            <li><Link to="#">Physical</Link></li>
-            <li><Link to="#">Mental</Link></li>
-            <li><Link to="#">Manipulation</Link></li>
-            <li><Link to="#">Transportation</Link></li>
+            <li><Link to="/categories/1">Physical</Link></li>
+            <li><Link to="/categories/5">Mental</Link></li>
+            <li><Link to="/categories/6">Manipulation</Link></li>
+            <li><Link to="/categories/7">Transportation</Link></li>
           </ul>
           <form className="navbar-form navbar-left" role="search">
             <div className="form-group">
