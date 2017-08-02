@@ -14,7 +14,7 @@ const UserProfile = (props) => {
       <div className="container">
         <div>
           <h3>Welcome, { user.name || user.email}</h3>
-          <img src={ user.profileImgPath } className="img-thumbnail" />
+          <img src={ user.profileImgPath } width="400" className="img-thumbnail" />
         </div>
         {
           authorized ?

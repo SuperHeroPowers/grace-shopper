@@ -5,7 +5,7 @@ import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
 import OrderList from './OrderList';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import {Navbar, Products, UserProfile, OrderProduct} from './index'
+import {Navbar, Products, UserProfile, OrderProduct, SingleCategory} from './index'
 
 /**
  * COMPONENT
