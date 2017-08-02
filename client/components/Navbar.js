@@ -13,7 +13,7 @@ const Navbar = (props) => {
         </div>
         <div className="collapse navbar-collapse">
           <ul className="nav navbar-nav">
-            <li className='active'><Link to="/">Home</Link></li>
+            <li className='active'><Link to="/products">Home</Link></li>
             <li><Link to="#">Physical</Link></li>
             <li><Link to="#">Mental</Link></li>
             <li><Link to="#">Manipulation</Link></li>
@@ -30,13 +30,13 @@ const Navbar = (props) => {
           <ul className="nav navbar-nav navbar-right">
             <li><Link to="/home">My Account</Link></li>
             <li><Link to="/logout" onClick={handleClick}>Log out</Link></li>
-            <li><Link to="#">Cart</Link></li>
+            <li><Link to="/cart">Cart</Link></li>
           </ul>
           :
           <ul className="nav navbar-nav navbar-right">
             <li><Link to="/signup">Sign up</Link></li>
             <li><Link to="/login">Log in</Link></li>
-            <li><Link to="#">Cart</Link></li>
+            <li><Link to="/cart">Cart</Link></li>
           </ul>
           }
         </div>

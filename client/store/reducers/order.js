@@ -7,14 +7,15 @@ const orders = [];
 // Action Types
 const GET_ORDER = 'GET_ORDER';
 const GET_ORDERS = 'GET_ORDERS';
-const CREATE_ORDER = 'CREATE_ORDER';
 const UPDATE_ORDER = 'UPDATE_ORDER';
+
 
 // Action creators
 const getOrder = order => ({type: GET_ORDER, order});
 const getOrders = orders => ({type: GET_ORDERS, orders});
-const createOrder = order => ({type: CREATE_ORDER, order});
+//const createOrder = order => ({type: CREATE_ORDER, order});
 const updateOrder = order => ({type: UPDATE_ORDER, order});
+
 
 // Thunk creators
 export const fetchOrders = () =>
@@ -25,28 +26,30 @@ export const fetchOrders = () =>
               dispatch(getOrders(res || orders))})
         .catch(err => console.log(err));
 
-export const fetchOrder = order =>
-    dispatch =>
-      axios.get(`/api/orders/${order.id}`)
-        .then(res => {console.log("actual data");
-              dispatch(getOrder(res.data || orders))})
-        .catch(err => console.log(err));
-
-export const postOrder = order => 
+export const placeOrder = (user) =>
   dispatch =>
-    axios.post('/api/orders', order)
-    .then(res => dispatch(createOrder(res.data || orders)))
-    .catch(err => console.log(err));
+    axios.post('/api/orders/', user)
+      .then(dispatch(fetchOrders()))
+      .catch(err => console.log(err));
+
+// export const fetchOrder = order =>
+//     dispatch =>
+//       axios.get(`/api/orders/${order.id}`)
+//         .then(res => {console.log("actual data");
+//               dispatch(getOrder(res.data || orders))})
+//         .catch(err => console.log(err));
+
+// export const postOrder = order =>
+//   dispatch =>
+//     axios.post('/api/orders', order)
+//     .then(res => dispatch(createOrder(res.data || orders)))
+//     .catch(err => console.log(err));
 
 export const putOrder = order =>
   dispatch =>
     axios.put(`/api/orders/${order.id}`, order)
     .then(res => dispatch(updateOrder(res.data || orders)))
     .catch(err => console.log(err));
-
-export const fetchCart = user =>
-  dispatch =>
-    axios.get()
 
 // Reducer
 export default function (state = orders, action) {
@@ -57,8 +60,6 @@ export default function (state = orders, action) {
     return action.orders;
    case UPDATE_ORDER:
       return [...state.filter(order => order.id !== action.order.id), action.order];
-   case CREATE_ORDER:
-    return [...state, action.order];
     default:
       return state;
   }

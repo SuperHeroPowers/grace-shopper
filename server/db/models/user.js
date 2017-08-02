@@ -35,7 +35,12 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  cart: {
+    type: Sequelize.ARRAY(Sequelize.JSON),
+    defaultValue: [{id: 1, quantity:3}]
   }
+//cart: array of objects that contains the product id and quantity
 })
 
 module.exports = User

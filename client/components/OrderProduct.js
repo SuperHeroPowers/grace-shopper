@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, NavLink } from 'react-router-dom'; 
+import { withRouter, NavLink } from 'react-router-dom';
 import store from '../store';
 console.log("hhh");
 function OrderProduct (props) {
@@ -25,7 +25,7 @@ function OrderProduct (props) {
 		       		      <li><h3>Shipping Address :{ order.shippingAddress }</h3></li>
 		     	          <li><h3>Billing Address :{ order.billingAddress }</h3></li>
 		     		        <li><h3>Total Price :{ order.totalPrice }</h3></li>
-      		        	
+
 	      		        <li><h3>Product Name : {product.name}</h3></li>
 	      		        <li><h3>Product Description : {product.description}</h3></li>
 	      		        <li><h3>Product Price : {product.price}</h3></li>

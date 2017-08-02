@@ -91,7 +91,7 @@ router.post('/:userId/review', (req, res, next) => {
 
 
 // Admin or user
-// Update user info and delete user
+// Update user info, update user cart  and delete user
 const authorizedAdminOrUser = (userId, currentUserId) => {
   return User.findOne({
     where: {

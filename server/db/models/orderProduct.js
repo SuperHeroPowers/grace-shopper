@@ -31,8 +31,11 @@ const OrderProduct = db.define('orderProduct',{
 
   // },
 	getterMethods:{
+		floatPrice: function() {
+			return this.price / 100.0
+		},
 		totalProductPrice: function(){
-			return this.quantity * this.price;
+			return this.quantity * this.floatPrice;
 		}
 	}
 
