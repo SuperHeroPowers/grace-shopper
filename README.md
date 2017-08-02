@@ -1,5 +1,7 @@
 # Grace Shopper
 
+Super Hero PowerUp! 
+
 Team Members: 
 Alice Chuang
 Danni Liu
