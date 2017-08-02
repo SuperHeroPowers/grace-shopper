@@ -65,18 +65,15 @@ const Order = db.define('order', {
       });
     }
   },
-//   hooks: {
-//     afterCreate: {
-//       function(order) {
-//         if (!order.userId){
-//           localStorage.setItem("sessionId", process.env.SESSION_SECRET);
-//           order.sessionId = localStorage.getItem("sessionId");
-//         }
-//       }
-//     }
-//   }
+  hooks: {
+    afterCreate: function(order) {
+      if (!order.userId){
+        console.log('IS THIS GOING TO LOG???', process.env.SESSION_SECRET);
+        localStorage.setItem("sessionId", process.env.SESSION_SECRET);
+        order.sessionId = localStorage.getItem("sessionId");
+      }
+    }
+  }
 });
 
 module.exports = Order;
-
-//before creating the order(which is a cart), check if it comes with userId, if not it's a guest, set sessionId on the model
